@@ -21,12 +21,17 @@ const ImageSection = () => (
     rowHeight={121}
   >
     {itemData.map((item, index) => (
-      <ImageListItem key={index} cols={item.cols || 1} rows={item.rows || 1}>
+      <ImageListItem key={index} cols={item.cols} rows={item.rows}>
         <img
           src={item.img}
-          alt=""
+          alt={`influencer-${index}`}
           loading="lazy"
-          style={{ objectFit: 'cover', width: '100%', height: '100%' }}
+          style={{
+            objectFit: 'cover',
+            width: '100%',
+            height: '100%',
+            borderRadius: '8px',
+          }}
         />
       </ImageListItem>
     ))}

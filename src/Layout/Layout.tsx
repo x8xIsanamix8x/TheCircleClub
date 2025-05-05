@@ -1,5 +1,7 @@
 import { Box, Container } from '@mui/material';
 import { ReactNode } from 'react';
+import Footer from '../components/Footer';
+import Nav from '../components/Nav';
 
 interface LayoutProps {
   children: ReactNode;
@@ -25,7 +27,9 @@ const Layout = ({ children }: LayoutProps) => (
         marginX: { xs: 2, sm: 4, md: 6, lg: '100px' }, // Margen lateral dinámico
       }}
     >
-      {children}
+      <Nav />
+        {children}
+      <Footer />
     </Container>
   </Box>
 );

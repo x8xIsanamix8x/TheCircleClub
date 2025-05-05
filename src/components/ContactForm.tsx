@@ -1,27 +1,47 @@
-import { Box, Grid, TextField, Button, Typography } from '@mui/material';
+import { Grid, Typography, Divider } from '@mui/material';
+import CustomTextField from '../elements/customTextField';
+import CustomTextArea from '../elements/customTextArea';
 
 const ContactForm = () => (
-  <Box sx={{ marginTop: 4, width: '100%' }}>
-    <Typography variant="h4" component="h2" gutterBottom>
-      Contáctanos
-    </Typography>
-    <Grid container spacing={2} justifyContent="center">
-      <Grid item xs={12} md={6}>
-        <TextField fullWidth label="Nombre" variant="outlined" />
+  <Grid container direction="row" justifyContent="center" alignItems="top" mt="22.2vh">
+    <Grid size={12} px="420px">
+      <Typography textAlign="center" component="p" fontSize={40} fontWeight={300} sx={{ color: '#2F342E', fontFamily: 'Inter' }}>CONTACTANOS</Typography>
+      <Typography textAlign="left" component="p" fontSize={14} fontWeight={500} sx={{ color: '#2F342E', fontFamily: 'Inter' }} mt="11.1vh">Qué opción de identifica mejor?</Typography>
+      <Grid container direction="row" justifyContent="center" spacing={2} mt="4.4vh">
+        <Grid size={12}>
+          <CustomTextField name="Soy creador de contenido" />
+        </Grid>
+        <Grid size={12}>
+          <CustomTextField name="Soy dueño de un negocio" />
+        </Grid>
       </Grid>
-      <Grid item xs={12} md={6}>
-        <TextField fullWidth label="Email" variant="outlined" />
-      </Grid>
-      <Grid item xs={12}>
-        <TextField fullWidth label="Mensaje" variant="outlined" multiline rows={4} />
-      </Grid>
-      <Grid item xs={12}>
-        <Button variant="contained" fullWidth>
-          Enviar
-        </Button>
+      <Divider sx={{ marginTop: '4.4vh', marginBottom: '4.4vh' }} />
+      <Grid container direction="row" justifyContent="center" spacing={2}>
+        <Grid size={6}>
+          <CustomTextField name="Nombre" />
+        </Grid>
+        <Grid size={6}>
+          <CustomTextField name="Apellido" />
+        </Grid>
+        <Grid size={12}>
+          <CustomTextField name="Email" />
+        </Grid>
+        <Grid size={12}>
+          <CustomTextField name="Usuario de Instagram" />
+        </Grid>
+        <Grid size={12}>
+          <CustomTextField name="Usuario de Tik Tok" />
+        </Grid>
+        <Grid size={12}>
+          <CustomTextField name="Teléfono" />
+        </Grid>
+        <Grid size={12}>
+          <CustomTextArea name="Mensaje" />
+        </Grid>
       </Grid>
     </Grid>
-  </Box>
+  </Grid>
+  
 );
 
 export default ContactForm;
