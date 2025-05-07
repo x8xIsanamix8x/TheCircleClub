@@ -1,5 +1,5 @@
-import { Box, Typography, Accordion, AccordionSummary, AccordionDetails, Grid, Collapse } from '@mui/material';
-import { ArrowDropDown, ExpandMore } from '@mui/icons-material';
+import { Typography, Grid, Collapse } from '@mui/material';
+import { ArrowDropDown } from '@mui/icons-material';
 import { useState } from 'react';
 
 const faqData = [
@@ -45,7 +45,7 @@ const FAQs = () => {
 
   return (
     <Grid container direction="row" justifyContent="center" alignItems="top" mt="22.2vh">
-      <Grid size={12} px="315px">
+      <Grid size={12} px={{ xs: 0, md: "315px" }}>
         <Typography textAlign="center" component="p" fontSize={40} fontWeight={300} sx={{ color: '#2F342E', fontFamily: 'Inter' }}>FAQs</Typography>
           <Grid container direction="row" justifyContent="space-between" spacing={2} mt="2.22vh">
             { faqData.map((item, index) => (

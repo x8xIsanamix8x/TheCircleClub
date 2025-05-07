@@ -7,7 +7,13 @@ import {
 } from '@mui/material';
 import { Visibility, VisibilityOff } from '@mui/icons-material';
 
-const CustomHideTextField = ({ name }: { name: string }) => {
+interface Props {
+  name: string;
+  value: string;
+  onChange: (value: string) => void;
+}
+
+const CustomHideTextField = ({ name, value, onChange }: Props) => {
   const [showPassword, setShowPassword] = useState(false);
 
   const handleToggleVisibility = () => {
@@ -29,6 +35,8 @@ const CustomHideTextField = ({ name }: { name: string }) => {
 
       <TextField
         type={showPassword ? 'text' : 'password'}
+        value={value}
+        onChange={(e) => onChange(e.target.value)}
         variant="outlined"
         fullWidth
         placeholder={`Escribe tu ${name}`}

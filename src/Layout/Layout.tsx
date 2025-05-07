@@ -14,21 +14,26 @@ const Layout = ({ children }: LayoutProps) => (
       flexDirection: 'column',
       alignItems: 'center',
       justifyContent: 'center',
+      width: '100vw',           // Fuerza el 100% del viewport horizontal
       minHeight: '100vh',
-      padding: 2,
-      backgroundColor: '#f9f9f9', // Fondo claro
+      overflowX: 'hidden',      // Previene scroll horizontal si algo se desborda
+      px: 0,                    // Elimina padding horizontal
+      backgroundImage: `linear-gradient(180deg, #FFFFFF 0%, #FAF9F4 50%, #F5F3EC 100%)`,
+      backgroundRepeat: 'no-repeat',
+      backgroundSize: 'cover',
     }}
   >
     <Container
-      maxWidth={false} // Permite que el ancho sea completamente fluido
+      maxWidth={false}
+      disableGutters                 // Elimina padding interno de Container
       sx={{
         width: '100%',
-        maxWidth: '1440px', // Ancho máximo manual para pantallas grandes
-        marginX: { xs: 2, sm: 4, md: 6, lg: '100px' }, // Margen lateral dinámico
+        maxWidth: '1440px',
+        px: { xs: 2, sm: 4, md: 6, lg: 10 }, // Acolchamiento interno sin causar desbordamiento
       }}
     >
       <Nav />
-        {children}
+      {children}
       <Footer />
     </Container>
   </Box>
