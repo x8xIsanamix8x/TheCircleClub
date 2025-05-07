@@ -6,29 +6,49 @@ import { useState } from 'react';
 import CustomPhoneField from '../elements/custonPhoneField';
 import CustomDateField from '../elements/customDateField';
 import estadosVenezuela from '../models/venezuelaState';
+import getApiService from '../helpers/getApiServices';
+import { format } from 'date-fns';
 
 const RegisterForm = () => {
 
+  const { registerService } = getApiService()
+
   const [formData, setFormData] = useState({
-    nombre: '',
-    apellido: '',
-    tipoServicio: '',
-    estiloServicio: '',
-    ubicacion: '',
-    descripcion: '',
-    email: '',
     telefono: '',
     codigoArea: '',
     instagram: '',
-    tiktok: '',
+    tiktok: '',  
     contrasena: '',
     confirmarContrasena: '',
+    nombre: '',
+    apellido: '',
+    email: '',
+    ubicacion: '',
     fechaNacimiento: null as Date | null,
   });
 
   const handleChange = (field: string, value: string) => {
     setFormData(prev => ({ ...prev, [field]: value }));
   };
+
+  const handleSubmit = async () => {
+    const dataToSend = {
+      name: formData.nombre,
+      lastname: formData.apellido,
+      birthdate: formData.fechaNacimiento
+        ? format(formData.fechaNacimiento, 'yyyy-MM-dd')
+        : '',
+      city: formData.ubicacion,
+      email: formData.email,
+      phone: `${formData.codigoArea}${formData.telefono}`,
+      instagram: formData.instagram,
+      tiktok: formData.tiktok,
+      password: formData.contrasena,
+    };
+  
+    await registerService(dataToSend);
+  };
+  
 
   return (
     <Grid container direction="row" justifyContent="center" alignItems="top" mt="22.2vh">
@@ -89,7 +109,7 @@ const RegisterForm = () => {
                 <CustomHideTextField name="Confirmar Contraseña" value={formData.confirmarContrasena} onChange={val => handleChange('confirmarContrasena', val)} />
               </Grid>
               <Grid size={12} mb="2.22vh">
-                <Button variant='contained' fullWidth sx={{ backgroundColor: '#2F342E', color: '#FFFFFF', fontSize: '16px' }}>Aceptar</Button>
+                <Button variant='contained' fullWidth sx={{ backgroundColor: '#2F342E', color: '#FFFFFF', fontSize: '16px' }} onClick={handleSubmit}>Aceptar</Button>
               </Grid>
             </Grid>
           </Grid>
