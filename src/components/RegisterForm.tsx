@@ -8,6 +8,8 @@ import CustomDateField from '../elements/customDateField';
 import estadosVenezuela from '../models/venezuelaState';
 import getApiService from '../helpers/getApiServices';
 import { format } from 'date-fns';
+import CustomNumberField from '../elements/CustomNumberField';
+import CustomImageUploadField from '../elements/CustomImageUploadField';
 
 const RegisterForm = () => {
 
@@ -24,6 +26,8 @@ const RegisterForm = () => {
     apellido: '',
     email: '',
     ubicacion: '',
+    followers: '',
+    profilePhotoUrl: null as File | null, // ← nuevo campo para imagen
     fechaNacimiento: null as Date | null,
   });
 
@@ -33,18 +37,18 @@ const RegisterForm = () => {
 
   const handleSubmit = async () => {
     const dataToSend = {
-      name: formData.nombre,
-      lastname: formData.apellido,
+      name: formData.nombre.trim(),
+      lastname: formData.apellido.trim(),
       birthdate: formData.fechaNacimiento
         ? format(formData.fechaNacimiento, 'yyyy-MM-dd')
         : '',
-      city: formData.ubicacion,
-      email: formData.email,
-      phone: `${formData.codigoArea}${formData.telefono}`,
-      instagram: formData.instagram,
-      tiktok: formData.tiktok,
+      city: formData.ubicacion.trim(),
+      email: formData.email.trim(),
+      phone: `${formData.codigoArea}${formData.telefono}`.replace(/[^0-9]/g, ''), // elimina + y guiones
+      instagram: formData.instagram.replace(/^@/, ''), // quita @ si lo escriben
+      tiktok: formData.tiktok.replace(/^@/, ''),       // quita @ si lo escriben
       password: formData.contrasena,
-    };
+    };    
   
     await registerService(dataToSend);
   };
@@ -62,6 +66,13 @@ const RegisterForm = () => {
             <Grid container direction="row" spacing={2}>
               <Grid size={12} mb="2.22vh" sx={{ backgroundColor: '#FFF', borderRadius: '7px' }} py="1.4vh">
                 <Typography textAlign="center" component="p" fontSize={16} fontWeight={500} sx={{ color: '#2F342E', fontFamily: 'Inter' }}>Registrarse</Typography>
+              </Grid>
+              <Grid size={12} mb="2.22vh">
+                <CustomImageUploadField
+                  name="Foto de perfil"
+                  file={formData.profilePhotoUrl}
+                  onChange={(file) => setFormData(prev => ({ ...prev, fotoPerfil: file }))}
+                />
               </Grid>
               <Grid size={6} mb="2.22vh">
                 <CustomTextField name="Nombre" value={formData.nombre} onChange={val => handleChange('nombre', val)} />
@@ -101,6 +112,9 @@ const RegisterForm = () => {
               </Grid>
               <Grid size={12} mb="2.22vh">
                 <CustomTextField name="Usuario de Tik Tok" value={formData.tiktok} onChange={val => handleChange('tiktok', val)} />
+              </Grid>
+              <Grid size={12} mb="2.22vh">
+                <CustomNumberField name="Seguidores" value={formData.followers} onChange={val => handleChange('followers', val)} />
               </Grid>
               <Grid size={12} mb="2.22vh">
                 <CustomHideTextField name="Crear Contraseña" value={formData.contrasena} onChange={val => handleChange('contrasena', val)} />

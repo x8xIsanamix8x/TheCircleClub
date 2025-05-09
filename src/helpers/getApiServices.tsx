@@ -14,24 +14,25 @@ interface RegisterPayload {
 
 const getApiService = () => {
   const registerService = async (data: RegisterPayload) => {
+
+    console.log("Payload que será enviado:", JSON.stringify(data, null, 2));
     try {
-      const formData = new FormData();
-      
-      Object.entries(data).forEach(([key, value]) => {
-        formData.append(key, value);
-      });
-
-      const response = await circleApi.post(`influencer/auth/register2`, formData, {
-        headers: {
-          'Content-Type': 'multipart/form-data',
-        },
-      });
-
+      const response = await circleApi.post(
+        `influencer/auth/register2`,
+        data,
+        {
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        }
+      );
+  
       console.log(response.data);
     } catch (error) {
       console.error("Error al registrar:", error);
     }
   };
+  
 
   return {
     registerService

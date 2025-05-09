@@ -1,15 +1,24 @@
-import { Box, Button, Grid, Typography } from "@mui/material"
-import Logo from "../assets/Logo/Logo.svg"
+import { Box, Button, Grid, Typography } from "@mui/material";
+import Logo from "../assets/Logo/Logo.svg";
 
-const Nav = () => (
-    <Grid
+interface NavProps {
+  onScrollTo: {
+    about: () => void;
+    register: () => void;
+    faq: () => void;
+    contact: () => void;
+  };
+}
+
+const Nav = ({ onScrollTo }: NavProps) => (
+  <Grid
     container
     direction="row"
     justifyContent="center"
     alignItems="flex-start"
     mt="2.22vh"
     mb="11.1vh"
-    sx={{ px: { xs: 2, md: 6 } }} // padding horizontal global para evitar solape
+    sx={{ px: { xs: 2, md: 6 } }}
   >
     <Grid item xs={12} sx={{ maxWidth: '1440px' }}>
       <Grid
@@ -30,24 +39,44 @@ const Nav = () => (
           />
         </Grid>
 
-        {/* Secciones (solo en LG en adelante) */}
-        <Grid item lg={1}  >
-          <Typography fontSize={16} fontWeight={300} sx={{ color: '#292D32', fontFamily: 'Inter' }}>
+        {/* Enlaces de navegación */}
+        <Grid item lg={1}>
+          <Typography
+            fontSize={16}
+            fontWeight={300}
+            sx={{ color: '#292D32', fontFamily: 'Inter', cursor: 'pointer' }}
+            onClick={onScrollTo.about}
+          >
             Secciones
           </Typography>
         </Grid>
-        <Grid item lg={1}  >
-          <Typography fontSize={16} fontWeight={300} sx={{ color: '#292D32', fontFamily: 'Inter' }}>
+        <Grid item lg={1}>
+          <Typography
+            fontSize={16}
+            fontWeight={300}
+            sx={{ color: '#292D32', fontFamily: 'Inter', cursor: 'pointer' }}
+            onClick={onScrollTo.register}
+          >
             Registrarse
           </Typography>
         </Grid>
-        <Grid item lg={1}  >
-          <Typography fontSize={16} fontWeight={300} sx={{ color: '#292D32', fontFamily: 'Inter' }}>
+        <Grid item lg={1}>
+          <Typography
+            fontSize={16}
+            fontWeight={300}
+            sx={{ color: '#292D32', fontFamily: 'Inter', cursor: 'pointer' }}
+            onClick={onScrollTo.faq}
+          >
             FAQ'S
           </Typography>
         </Grid>
         <Grid item lg={2}>
-          <Typography fontSize={16} fontWeight={300} sx={{ color: '#292D32', fontFamily: 'Inter' }}>
+          <Typography
+            fontSize={16}
+            fontWeight={300}
+            sx={{ color: '#292D32', fontFamily: 'Inter', cursor: 'pointer' }}
+            onClick={onScrollTo.contact}
+          >
             Contacto
           </Typography>
         </Grid>
@@ -71,6 +100,6 @@ const Nav = () => (
       </Grid>
     </Grid>
   </Grid>
-)
+);
 
 export default Nav;

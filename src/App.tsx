@@ -5,16 +5,42 @@ import AboutUs from './components/AboutUs';
 import RegisterForm from './components/RegisterForm';
 import FAQs from './components/FAQs';
 import ContactForm from './components/ContactForm';
+import { useRef } from 'react';
 
 const App = () => {
+
+  const aboutRef = useRef<HTMLElement>(null);
+  const registerRef = useRef<HTMLElement>(null);
+  const faqRef = useRef<HTMLElement>(null);
+  const contactRef = useRef<HTMLElement>(null);
+
   return (
-    <Layout>
-      <Header />
-      <ImageSection />
-      <AboutUs />
-      <RegisterForm />
-      <FAQs />
-      <ContactForm />
+    <Layout
+        sectionRefs={{
+          about: aboutRef,
+          register: registerRef,
+          faq: faqRef,
+          contact: contactRef,
+        }}
+    >
+      <section>
+        <Header />
+      </section>
+      <section>
+        <ImageSection />
+      </section>
+      <section ref={aboutRef}>
+        <AboutUs />
+      </section>
+      <section ref={registerRef}>
+        <RegisterForm />
+      </section>
+      <section ref={faqRef}>
+        <FAQs />
+      </section>
+      <section ref={contactRef}>
+        <ContactForm />
+      </section>      
     </Layout>
   );
 };
