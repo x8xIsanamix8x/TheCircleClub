@@ -46,23 +46,80 @@ const FAQs = () => {
     <Grid container direction="row" justifyContent="center" alignItems="top" mt="22.2vh">
       <Grid size={12} px={{ xs: 0, md: "315px" }}>
         <Typography textAlign="center" component="p" fontSize={40} fontWeight={300} sx={{ color: '#2F342E', fontFamily: 'Inter' }}>FAQs</Typography>
-          <Grid container direction="row" justifyContent="space-between" spacing={2} mt="2.22vh">
-            { faqData.map((item, index) => (
-                <Grid size={6} key={ index } sx={{ backgroundColor: '#2F342E', borderRadius: '10px', cursor: 'pointer', maxHeight: openIndex != index ? '80px' : 'auto' }} py="1.5vh" onClick={() => handleToggle(index)}>
-                  <Grid container direction="row" justifyContent="space-between" alignItems="center" px="14px">
-                    <Grid size={10}>
-                      <Typography textAlign="left" component="p" fontSize={16} fontWeight={400} sx={{ color: '#FFF', fontFamily: 'Inter' }}>{ item?.question }</Typography>
-                    </Grid>
-                    <Grid size={2} sx={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'center' }}>
-                      <ArrowDropDown sx={{ verticalAlign: 'middle' }}/>
-                    </Grid>
-                    <Grid size={12}>
-                      <Collapse in={openIndex === index} timeout="auto" unmountOnExit>
-                        <Typography textAlign="left" component="p" fontSize={16} fontWeight={400} sx={{ color: '#FFF', fontFamily: 'Inter' }} mt="1vh">{ item.answer }</Typography>
-                      </Collapse>
-                    </Grid>
+          <Grid
+            container
+            direction="row"
+            justifyContent="space-between"
+            spacing={2}
+            mt="2.22vh"
+          >
+            {faqData.map((item, index) => (
+              <Grid
+                item
+                xs={12} // Ajusta el tamaño para pantallas pequeñas
+                md={6} // Ajusta el tamaño para pantallas medianas
+                key={index}
+                sx={{
+                  backgroundColor: '#2F342E',
+                  borderRadius: '10px',
+                  cursor: 'pointer',
+                  overflow: 'hidden', // Evita desbordamientos
+                }}
+                py="1.5vh"
+                onClick={() => handleToggle(index)}
+              >
+                <Grid
+                  container
+                  direction="row"
+                  justifyContent="space-between"
+                  alignItems="center"
+                  px="14px"
+                >
+                  {/* Pregunta */}
+                  <Grid item xs={10}>
+                    <Typography
+                      textAlign="left"
+                      component="p"
+                      fontSize={16}
+                      fontWeight={400}
+                      sx={{ color: '#FFF', fontFamily: 'Inter' }}
+                    >
+                      {item?.question}
+                    </Typography>
+                  </Grid>
+
+                  {/* Icono */}
+                  <Grid
+                    item
+                    xs={2}
+                    sx={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'center' }}
+                  >
+                    <ArrowDropDown
+                      sx={{
+                        transform: openIndex === index ? 'rotate(180deg)' : 'rotate(0deg)',
+                        transition: 'transform 0.3s ease',
+                        verticalAlign: 'middle',
+                      }}
+                    />
+                  </Grid>
+
+                  {/* Respuesta */}
+                  <Grid item xs={12}>
+                    <Collapse in={openIndex === index} timeout="auto" unmountOnExit>
+                      <Typography
+                        textAlign="left"
+                        component="p"
+                        fontSize={16}
+                        fontWeight={400}
+                        sx={{ color: '#FFF', fontFamily: 'Inter' }}
+                        mt="1vh"
+                      >
+                        {item.answer}
+                      </Typography>
+                    </Collapse>
                   </Grid>
                 </Grid>
+              </Grid>
             ))}
           </Grid>
       </Grid>

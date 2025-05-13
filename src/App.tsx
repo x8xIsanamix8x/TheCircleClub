@@ -7,6 +7,8 @@ import FAQs from './components/FAQs';
 import ContactForm from './components/ContactForm';
 import { useRef } from 'react';
 
+
+
 const App = () => {
 
   const aboutRef = useRef<HTMLElement>(null);

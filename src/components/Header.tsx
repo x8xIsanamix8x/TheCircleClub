@@ -5,8 +5,7 @@ import Influencer from '../assets/Header/Persona1.jpg';
 import InfluencerII from '../assets/Header/Persona2.jpg';
 import InfluencerIII from '../assets/Header/Persona3.jpg';
 
-
-
+import '../index.css';
 
 const Header = () => (
   <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', textAlign: 'center' }}>
@@ -16,8 +15,8 @@ const Header = () => (
         component="h1"
         gutterBottom
         sx={{
-          fontFamily: 'Spectral',
-          fontWeight: '100px',
+          fontFamily: 'The Seasons',
+          fontWeight: 300,
           fontSize: '40px',
           lineHeight: '100%',
           letterSpacing: '-2%',
@@ -28,10 +27,22 @@ const Header = () => (
         Bienvenido a
       </Typography>
       <img src={Logo} alt="Logo" style={{ width: '200px', height: 'auto' }} />
-      <Typography component="p" sx={{ color: '#2F342E', fontSize: '16px', fontFamily: 'Inter', fontWeight: '400px', mt: '1vh' }} paragraph>
+      <Typography component="p" 
+      sx={{
+        fontFamily: 'Inter', // Fuente Inter
+        fontWeight: 400, // Peso regular
+        fontSize: '16px', // Tamaño de fuente
+        lineHeight: '100%', // Altura de línea
+        letterSpacing: '1%', // Espaciado entre letras
+        textAlign: 'center', // Alineación centrada
+        color: '#2F342E', // Color del texto
+        mt: '1vh', // Margen superior
+        mx: '18rem', // Margen horizontal
+      }}
+      paragraph>
         Conectamos las mejores experiencias con los influencers y creadores de contenido más influyentes del panorama nacional e internacional.
       </Typography>
-      <Button variant="contained" sx={{ mx:'16px', my:'8px', gap:'10px', borderRadius: '10.6px', fontSize: '12px', fontWeight: '500px', backgroundColor: '#2F342E' }}>
+      <Button variant="contained" sx={{ mx: '16px', my: '8px', gap: '10px', borderRadius: '10.6px', fontSize: '12px', fontWeight: '500', backgroundColor: '#2F342E' }}>
         Registrarse
       </Button>
 

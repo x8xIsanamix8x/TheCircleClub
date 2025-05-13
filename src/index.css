@@ -67,3 +67,17 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }
+
+@font-face {
+  font-family: 'The Seasons';
+  src: url('./assets/fonts/Fontspring-DEMO-theseasons-bd.otf') format('opentype');
+  font-weight: 700; /* Bold */
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'The Seasons';
+  src: url('./assets/fonts/Fontspring-DEMO-theseasons-reg.otf') format('opentype');
+  font-weight: 400; /* Regular */
+  font-style: normal;
+}
