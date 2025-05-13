@@ -4,7 +4,7 @@ import { useState } from 'react';
 
 const faqData = [
   {
-    question: '¿Cómo puedo acceder a The CIRCLE club.?',
+    question: '¿Cómo puedo acceder a The CIRCLE club?',
     answer:
       'Puedes hacerlo a través de nuestra web o descargando la app. Ten en cuenta que el registro no garantiza el acceso inmediato: evaluamos cada perfil y te notificaremos por correo electrónico si es aprobado.',
   },
@@ -14,23 +14,28 @@ const faqData = [
       'Una selección curada de experiencias, productos y servicios exclusivos en Venezuela. Podrás solicitar colaboraciones con marcas a cambio de contenido en tus redes sociales.',
   },
   {
-    question: '¿Dónde está ubicado The CIRCLE club.?',
+    question: '¿Dónde está ubicado The CIRCLE club?',
     answer:
-      'Por ahora estamos operativos únicamente en Venezuela. Muy pronto llegaremos a Panamá y República Dominicana.',
+      'Por ahora estamos operativos únicamente en Venezuela. Muy pronto llegaremos a Panamá y República Dominicana. Podrás solicitar colaboraciones con marcas a cambio de contenido en tus redes sociales.',
   },
   {
     question: 'Soy una empresa, ¿cómo puedo estar dentro de la app?',
-    answer:'Contáctanos vía email o por WhatsApp. Te enviaremos toda la información necesaria para formar parte del club',
+    answer:'Contáctanos vía email o por WhatsApp. Te enviaremos toda la información necesaria para formar parte del club. ',
   },
   {
     question: '¿Tengo un problema con una solicitud dentro de la app, ¿qué hago?',
     answer:
-      'Por supuesto. Cada miembro tiene un cupo limitado de invitaciones que puede usar desde su panel.',
+      ' Nuestro servicio de atención al cliente está disponible por WhatsApp las 24 horas. Escríbenos y te ayudaremos de inmediato.',
   },
   {
     question: '¿Dónde puedo contactarlos?',
     answer:
       'Puedes escribirnos directamente a través del formulario de contacto en nuestra página web o por nuestras redes sociales.',
+  },
+  {
+    question: '¿Tiene algún costo estar en The CIRCLE club.?',
+    answer:
+      'No cobramos a los influencers por formar parte del club.',
   },
 ];
 
