@@ -4,27 +4,26 @@ import { useState } from 'react';
 
 const faqData = [
   {
-    question: '¿Qué es The Circle Club?',
+    question: '¿Cómo puedo acceder a The CIRCLE club.?',
     answer:
-      'Frame follower comment polygon clip group list. Reesizing overflow figjam outline follower figma. Duplicate subtract shadow object figjam effect device auto.\n\nBullet scrolling layout vector edit pen link rotate outline move. Arrow share stroke hand group line horizontal component select.',
+      'Puedes hacerlo a través de nuestra web o descargando la app. Ten en cuenta que el registro no garantiza el acceso inmediato: evaluamos cada perfil y te notificaremos por correo electrónico si es aprobado.',
   },
   {
-    question: '¿Cómo me uno al club?',
+    question: '¿Qué voy a encontrar dentro de la app?',
     answer:
-      'Debes registrarte en nuestra web oficial y seguir las instrucciones para completar tu perfil y solicitud de ingreso.',
+      'Una selección curada de experiencias, productos y servicios exclusivos en Venezuela. Podrás solicitar colaboraciones con marcas a cambio de contenido en tus redes sociales.',
   },
   {
-    question: '¿Cuáles son los beneficios?',
+    question: '¿Dónde está ubicado The CIRCLE club.?',
     answer:
-      'Acceso exclusivo a eventos privados, descuentos en marcas aliadas y conexión con una red premium de contactos.',
+      'Por ahora estamos operativos únicamente en Venezuela. Muy pronto llegaremos a Panamá y República Dominicana.',
   },
   {
-    question: '¿Tiene algún costo?',
-    answer:
-      'Sí, existen diferentes planes de membresía adaptados a cada perfil. Consulta la sección de precios.',
+    question: 'Soy una empresa, ¿cómo puedo estar dentro de la app?',
+    answer:'Contáctanos vía email o por WhatsApp. Te enviaremos toda la información necesaria para formar parte del club',
   },
   {
-    question: '¿Puedo invitar a otros?',
+    question: '¿Tengo un problema con una solicitud dentro de la app, ¿qué hago?',
     answer:
       'Por supuesto. Cada miembro tiene un cupo limitado de invitaciones que puede usar desde su panel.',
   },
@@ -49,17 +48,17 @@ const FAQs = () => {
         <Typography textAlign="center" component="p" fontSize={40} fontWeight={300} sx={{ color: '#2F342E', fontFamily: 'Inter' }}>FAQs</Typography>
           <Grid container direction="row" justifyContent="space-between" spacing={2} mt="2.22vh">
             { faqData.map((item, index) => (
-                <Grid size={6} key={ index } sx={{ backgroundColor: '#2F342E', borderRadius: '10px', cursor: 'pointer', maxHeight: openIndex != index ? '50px' : 'auto' }} py="1.5vh" onClick={() => handleToggle(index)}>
-                  <Grid container direction="row" justifyContent="space-between" px="14px">
+                <Grid size={6} key={ index } sx={{ backgroundColor: '#2F342E', borderRadius: '10px', cursor: 'pointer', maxHeight: openIndex != index ? '80px' : 'auto' }} py="1.5vh" onClick={() => handleToggle(index)}>
+                  <Grid container direction="row" justifyContent="space-between" alignItems="center" px="14px">
                     <Grid size={10}>
-                      <Typography textAlign="left" component="p" fontSize={16} fontWeight={400} sx={{ color: '#FFF', fontFamily: 'Inter' }}>¿Qué es The Circle Club?</Typography>
+                      <Typography textAlign="left" component="p" fontSize={16} fontWeight={400} sx={{ color: '#FFF', fontFamily: 'Inter' }}>{ item?.question }</Typography>
                     </Grid>
                     <Grid size={2} sx={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'center' }}>
                       <ArrowDropDown sx={{ verticalAlign: 'middle' }}/>
                     </Grid>
                     <Grid size={12}>
                       <Collapse in={openIndex === index} timeout="auto" unmountOnExit>
-                        <Typography textAlign="left" component="p" fontSize={16} fontWeight={400} sx={{ color: '#FFF', fontFamily: 'Inter' }} mt="1vh">Frame follower comment polygon clip group list. Reesizing overflow figjam outline follower figma. Duplicate subtract shadow object figjam effect device auto. <br /><br />Bullet scrolling layout vector edit pen link rotate outline move. Arrow share stroke hand group line horizontal component select.</Typography>
+                        <Typography textAlign="left" component="p" fontSize={16} fontWeight={400} sx={{ color: '#FFF', fontFamily: 'Inter' }} mt="1vh">{ item.answer }</Typography>
                       </Collapse>
                     </Grid>
                   </Grid>

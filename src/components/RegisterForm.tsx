@@ -27,7 +27,7 @@ const RegisterForm = () => {
     email: '',
     ubicacion: '',
     followers: '',
-    profilePhotoUrl: null as File | null, // ← nuevo campo para imagen
+    profilePhotoUrl: null as File | null, 
     fechaNacimiento: null as Date | null,
   });
 
@@ -44,10 +44,12 @@ const RegisterForm = () => {
         : '',
       city: formData.ubicacion.trim(),
       email: formData.email.trim(),
-      phone: `${formData.codigoArea}${formData.telefono}`.replace(/[^0-9]/g, ''), // elimina + y guiones
-      instagram: formData.instagram.replace(/^@/, ''), // quita @ si lo escriben
-      tiktok: formData.tiktok.replace(/^@/, ''),       // quita @ si lo escriben
+      phone: `${formData.codigoArea}${formData.telefono}`.replace(/[^0-9]/g, ''), 
+      instagram: formData.instagram.replace(/^@/, ''), 
+      tiktok: formData.tiktok.replace(/^@/, ''),      
       password: formData.contrasena,
+      followers: formData.followers,
+      profilePhotoUrl: formData.profilePhotoUrl
     };    
   
     await registerService(dataToSend);
@@ -71,7 +73,7 @@ const RegisterForm = () => {
                 <CustomImageUploadField
                   name="Foto de perfil"
                   file={formData.profilePhotoUrl}
-                  onChange={(file) => setFormData(prev => ({ ...prev, fotoPerfil: file }))}
+                  onChange={(file) => setFormData(prev => ({ ...prev, profilePhotoUrl: file }))}
                 />
               </Grid>
               <Grid size={6} mb="2.22vh">
