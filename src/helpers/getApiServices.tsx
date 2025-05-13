@@ -1,5 +1,6 @@
 import axios from "axios";
 import circleApi from "../api/circleApi";
+import Swal from "sweetalert2";
 
 interface RegisterPayload {
   name: string;
@@ -58,6 +59,8 @@ const getApiService = () => {
 
       const response = await circleApi.put(`influencer/auth/register`, formData);
       console.log("✅ Respuesta del backend:", response.data);
+      Swal.fire({ title: "Registro Exitoso", icon: "success",});
+
     } catch (error) {
       console.log("❌ Error durante el envío. Reenviando datos para depuración:");
       console.log("📡 Método:", "PUT");
@@ -84,6 +87,8 @@ const getApiService = () => {
       }
 
       console.error("❌ Error al registrar:", error);
+
+      Swal.fire({ icon: "error", title: "Error", text: "Algo salio mal con el registro", });
     }
   };
 

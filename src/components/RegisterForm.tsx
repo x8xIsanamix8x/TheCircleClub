@@ -15,6 +15,22 @@ const RegisterForm = () => {
 
   const { registerService } = getApiService()
 
+  const initialFormState = {
+    telefono: '',
+    codigoArea: '',
+    instagram: '',
+    tiktok: '',
+    contrasena: '',
+    confirmarContrasena: '',
+    nombre: '',
+    apellido: '',
+    email: '',
+    ubicacion: '',
+    followers: '',
+    profilePhotoUrl: null as File | null,
+    fechaNacimiento: null as Date | null,
+  };
+
   const [formData, setFormData] = useState({
     telefono: '',
     codigoArea: '',
@@ -52,7 +68,12 @@ const RegisterForm = () => {
       profilePhotoUrl: formData.profilePhotoUrl
     };    
   
-    await registerService(dataToSend);
+    try {
+      await registerService(dataToSend);
+      setFormData(initialFormState); // ✅ Limpiar solo si fue exitoso
+    } catch (error) {
+      console.warn("❌ Registro fallido, los datos se mantienen.", error);
+    }
   };
   
 
