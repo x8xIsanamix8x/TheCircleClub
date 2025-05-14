@@ -47,7 +47,7 @@ const Nav = ({ onScrollTo }: NavProps) => (
             sx={{ color: '#292D32', fontFamily: 'Inter', cursor: 'pointer' }}
             onClick={onScrollTo.about}
           >
-            Secciones
+            The Club
           </Typography>
         </Grid>
         <Grid item lg={1}>

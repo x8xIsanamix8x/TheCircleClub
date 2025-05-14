@@ -7,7 +7,11 @@ import InfluencerIII from '../assets/Header/Persona3.jpg';
 
 import '../index.css';
 
-const Header = () => (
+interface HeaderProps {
+  onRegisterClick: () => void;
+}
+
+const Header: React.FC<HeaderProps> = ({ onRegisterClick }) => (
   <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', textAlign: 'center' }}>
     <Box sx={{ marginTop: 2 }}>
       <Typography
@@ -42,7 +46,7 @@ const Header = () => (
       paragraph>
         Conectamos las mejores experiencias con los influencers y creadores de contenido más influyentes del panorama nacional e internacional.
       </Typography>
-      <Button variant="contained" sx={{ mx: '16px', my: '8px', gap: '10px', borderRadius: '10.6px', fontSize: '12px', fontWeight: '500', backgroundColor: '#2F342E' }}>
+      <Button variant="contained" sx={{ mx: '16px', my: '8px', gap: '10px', borderRadius: '10.6px', fontSize: '12px', fontWeight: '500', backgroundColor: '#2F342E' }} onClick={onRegisterClick}>
         Registrarse
       </Button>
 

@@ -59,7 +59,7 @@ const getApiService = () => {
 
       const response = await circleApi.put(`influencer/auth/register`, formData);
       console.log("✅ Respuesta del backend:", response.data);
-      Swal.fire({ title: "Registro Exitoso", icon: "success",});
+      Swal.fire({ title: "Solicitud Enviada", icon: "success",});
 
     } catch (error) {
       console.log("❌ Error durante el envío. Reenviando datos para depuración:");

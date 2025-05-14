@@ -26,7 +26,7 @@ const App = () => {
         }}
     >
       <section>
-        <Header />
+        <Header onRegisterClick={() => registerRef.current?.scrollIntoView({ behavior: 'smooth' })} />
       </section>
       <section>
         <ImageSection />

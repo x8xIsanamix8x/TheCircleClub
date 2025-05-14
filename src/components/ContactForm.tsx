@@ -5,8 +5,8 @@ import CustomTextArea from '../elements/customTextArea';
 const ContactForm = () => (
   <Grid container direction="row" justifyContent="center" alignItems="top" mt="22.2vh">
     <Grid size={12} px={{ xs: 0, md: "420px" }}>
-      <Typography textAlign="center" component="p" fontSize={40} fontWeight={300} sx={{ color: '#2F342E', fontFamily: 'Inter' }}>CONTACTANOS</Typography>
-      <Typography textAlign="left" component="p" fontSize={14} fontWeight={500} sx={{ color: '#2F342E', fontFamily: 'Inter' }} mt="11.1vh">Qué opción de identifica mejor?</Typography>
+      <Typography textAlign="center" component="p" fontSize={40} fontWeight={300} sx={{ color: '#2F342E', fontFamily: 'Inter' }}>CONTACTÁNOS</Typography>
+      <Typography textAlign="left" component="p" fontSize={14} fontWeight={500} sx={{ color: '#2F342E', fontFamily: 'Inter' }} mt="11.1vh">¿Qué opción de identifica mejor?</Typography>
       <Grid container direction="row" justifyContent="center" spacing={2} mt="4.4vh">
         <Grid size={12}>
           <CustomTextField name="Soy creador de contenido" />

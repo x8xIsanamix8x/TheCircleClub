@@ -28,7 +28,7 @@ const Footer = ({ onScrollTo }: FooterProps) => (
                 </Grid>
                 <Grid size={3}>
                     <Typography textAlign="left" component="p" fontSize={16} fontWeight={300} sx={{ color: '#292D32', fontFamily: 'Inter' }} >Secciones</Typography>
-                    <Typography textAlign="left" component="p" fontSize={16} fontWeight={300} sx={{ color: '#292D32', fontFamily: 'Inter', cursor: 'pointer' }} onClick={onScrollTo.about}>Quiénes somos?</Typography>
+                    <Typography textAlign="left" component="p" fontSize={16} fontWeight={300} sx={{ color: '#292D32', fontFamily: 'Inter', cursor: 'pointer' }} onClick={onScrollTo.about}>¿Quiénes somos?</Typography>
                     <Typography textAlign="left" component="p" fontSize={16} fontWeight={300} sx={{ color: '#292D32', fontFamily: 'Inter', cursor: 'pointer' }} onClick={onScrollTo.register}>Regístrarse</Typography>
                     <Typography textAlign="left" component="p" fontSize={16} fontWeight={300} sx={{ color: '#292D32', fontFamily: 'Inter', cursor: 'pointer' }} onClick={onScrollTo.faq}>FAQ'S</Typography>
                     <Typography textAlign="left" component="p" fontSize={16} fontWeight={300} sx={{ color: '#292D32', fontFamily: 'Inter', cursor: 'pointer' }} onClick={onScrollTo.contact}>Contacto</Typography>
