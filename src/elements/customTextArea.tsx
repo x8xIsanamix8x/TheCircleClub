@@ -4,9 +4,17 @@ interface Props {
   name: string;
   value: string;
   onChange: (value: string) => void;
+  error?: boolean;
+  helperText?: string;
 }
 
-const CustomTextArea = ({ name, value, onChange }: Props) => (
+const CustomTextArea = ({
+  name,
+  value,
+  onChange,
+  error = false,
+  helperText = '',
+}: Props) => (
   <>
     <Typography
       textAlign="left"
@@ -27,21 +35,32 @@ const CustomTextArea = ({ name, value, onChange }: Props) => (
       multiline
       rows={4}
       placeholder={`Escribe tu ${name}`}
-      sx={{
-        backgroundColor: '#FFF',
-        borderRadius: '12px',
-        '& .MuiOutlinedInput-root': {
+      error={error}
+      helperText={helperText}
+      InputProps={{
+        sx: {
+          backgroundColor: '#FFF',
+          borderRadius: '12px',
           paddingY: 1.5,
         },
+      }}
+      FormHelperTextProps={{
+        sx: {
+          backgroundColor: 'transparent',
+          mt: '4px',
+          ml: '2px',
+        },
+      }}
+      sx={{
         '& .MuiOutlinedInput-notchedOutline': {
-          borderColor: '#f2f2f2',
+          borderColor: error ? '#f44336' : '#f2f2f2',
           borderRadius: '12px',
         },
         '&:hover .MuiOutlinedInput-notchedOutline': {
-          borderColor: '#ccc',
+          borderColor: error ? '#f44336' : '#ccc',
         },
         '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
-          borderColor: '#4dabf5',
+          borderColor: error ? '#f44336' : '#4dabf5',
         },
       }}
     />
