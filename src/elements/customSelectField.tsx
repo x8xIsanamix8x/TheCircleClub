@@ -1,13 +1,15 @@
-import { FormControl, MenuItem, Select, Typography } from "@mui/material";
+import { FormControl, MenuItem, Select, Typography, FormHelperText } from "@mui/material";
 
 interface Props {
   name: string;
   value: string;
   onChange: (value: string) => void;
   options: string[];
+  error?: boolean;
+  helperText?: string;
 }
 
-const CustomSelectField = ({ name, value, onChange, options }: Props) => (
+const CustomSelectField = ({ name, value, onChange, options, error = false, helperText = '' }: Props) => (
   <>
     <Typography
       textAlign="left"
@@ -20,7 +22,7 @@ const CustomSelectField = ({ name, value, onChange, options }: Props) => (
       {name}
     </Typography>
 
-    <FormControl fullWidth>
+    <FormControl fullWidth error={error}>
       <Select
         value={value}
         onChange={(e) => onChange(e.target.value)}
@@ -30,13 +32,13 @@ const CustomSelectField = ({ name, value, onChange, options }: Props) => (
           backgroundColor: '#fff',
           borderRadius: '12px',
           '& .MuiOutlinedInput-notchedOutline': {
-            borderColor: '#f2f2f2',
+            borderColor: error ? '#f44336' : '#f2f2f2',
           },
           '&:hover .MuiOutlinedInput-notchedOutline': {
-            borderColor: '#ccc',
+            borderColor: error ? '#f44336' : '#ccc',
           },
           '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
-            borderColor: '#4dabf5',
+            borderColor: error ? '#f44336' : '#4dabf5',
           },
         }}
       >
@@ -49,6 +51,7 @@ const CustomSelectField = ({ name, value, onChange, options }: Props) => (
           </MenuItem>
         ))}
       </Select>
+      {helperText && <FormHelperText>{helperText}</FormHelperText>}
     </FormControl>
   </>
 );

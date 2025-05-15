@@ -8,9 +8,17 @@ interface Props {
   name: string;
   value: Date | null;
   onChange: (value: Date | null) => void;
+  error?: boolean;
+  helperText?: string;
 }
 
-const CustomDateField = ({ name, value, onChange }: Props) => {
+const CustomDateField = ({
+  name,
+  value,
+  onChange,
+  error = false,
+  helperText = ''
+}: Props) => {
   return (
     <>
       <Typography
@@ -32,18 +40,32 @@ const CustomDateField = ({ name, value, onChange }: Props) => {
           slotProps={{
             textField: {
               fullWidth: true,
+              error,
+              helperText,
               placeholder: `Selecciona ${name}`,
+              InputProps: {
+                sx: {
+                  backgroundColor: '#FFF', // ✅ solo input
+                  borderRadius: '12px',
+                },
+              },
+              FormHelperTextProps: {
+                sx: {
+                  backgroundColor: 'transparent', // ✅ evita fondo blanco en helper
+                  mt: '4px',
+                  ml: '2px',
+                },
+              },
               sx: {
-                backgroundColor: '#FFF',
-                borderRadius: '12px',
                 '& .MuiOutlinedInput-notchedOutline': {
-                  borderColor: '#f2f2f2',
+                  borderColor: error ? '#f44336' : '#f2f2f2',
+                  borderRadius: '12px',
                 },
                 '&:hover .MuiOutlinedInput-notchedOutline': {
-                  borderColor: '#ccc',
+                  borderColor: error ? '#f44336' : '#ccc',
                 },
                 '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
-                  borderColor: '#4dabf5',
+                  borderColor: error ? '#f44336' : '#4dabf5',
                 },
               },
             },

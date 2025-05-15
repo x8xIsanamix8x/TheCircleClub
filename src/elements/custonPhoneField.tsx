@@ -1,4 +1,12 @@
-import { FormControl, Grid, MenuItem, Select, TextField, Typography } from '@mui/material';
+import {
+  FormControl,
+  Grid,
+  MenuItem,
+  Select,
+  TextField,
+  Typography,
+  FormHelperText,
+} from '@mui/material';
 
 interface Props {
   name: string;
@@ -6,9 +14,19 @@ interface Props {
   phoneNumber: string;
   onAreaChange: (value: string) => void;
   onPhoneChange: (value: string) => void;
+  error?: boolean;
+  helperText?: string;
 }
 
-const CustomPhoneField = ({ name, areaCode, phoneNumber, onAreaChange, onPhoneChange }: Props) => (
+const CustomPhoneField = ({
+  name,
+  areaCode,
+  phoneNumber,
+  onAreaChange,
+  onPhoneChange,
+  error = false,
+  helperText = '',
+}: Props) => (
   <>
     <Typography
       textAlign="left"
@@ -23,25 +41,27 @@ const CustomPhoneField = ({ name, areaCode, phoneNumber, onAreaChange, onPhoneCh
 
     <Grid container width="100%" wrap="nowrap">
       <Grid size={4}>
-        <FormControl fullWidth>
+        <FormControl fullWidth error={error}>
           <Select
             value={areaCode}
             onChange={(e) => onAreaChange(e.target.value)}
             displayEmpty
             sx={{
-              backgroundColor: '#fff',
+              '& .MuiSelect-select': {
+                backgroundColor: '#FFF', // ✅ solo el input tiene fondo
+              },
               borderTopLeftRadius: '12px',
               borderBottomLeftRadius: '12px',
               borderTopRightRadius: 0,
               borderBottomRightRadius: 0,
               '& .MuiOutlinedInput-notchedOutline': {
-                borderColor: '#f2f2f2',
+                borderColor: error ? '#f44336' : '#f2f2f2',
               },
               '&:hover .MuiOutlinedInput-notchedOutline': {
-                borderColor: '#ccc',
+                borderColor: error ? '#f44336' : '#ccc',
               },
               '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
-                borderColor: '#4dabf5',
+                borderColor: error ? '#f44336' : '#4dabf5',
               },
             }}
           >
@@ -151,6 +171,11 @@ const CustomPhoneField = ({ name, areaCode, phoneNumber, onAreaChange, onPhoneCh
             <MenuItem value="+298">+298 (Islas Feroe)</MenuItem>
             <MenuItem value="+299">+299 (Groenlandia)</MenuItem>
           </Select>
+          {helperText && (
+            <FormHelperText sx={{ backgroundColor: 'transparent', mt: '4px', ml: '2px' }}>
+              {helperText}
+            </FormHelperText>
+          )}
         </FormControl>
       </Grid>
 
@@ -160,21 +185,32 @@ const CustomPhoneField = ({ name, areaCode, phoneNumber, onAreaChange, onPhoneCh
           onChange={(e) => onPhoneChange(e.target.value)}
           variant="outlined"
           fullWidth
+          error={error}
+          helperText={helperText}
           placeholder="Número de teléfono"
+          InputProps={{
+            sx: {
+              backgroundColor: '#FFF', // ✅ solo el input
+              borderTopRightRadius: '12px',
+              borderBottomRightRadius: '12px',
+            },
+          }}
+          FormHelperTextProps={{
+            sx: {
+              backgroundColor: 'transparent',
+              mt: '4px',
+              ml: '2px',
+            },
+          }}
           sx={{
-            backgroundColor: '#FFF',
-            borderTopRightRadius: '12px',
-            borderBottomRightRadius: '12px',
-            borderTopLeftRadius: 0,
-            borderBottomLeftRadius: 0,
             '& .MuiOutlinedInput-notchedOutline': {
-              borderColor: '#f2f2f2',
+              borderColor: error ? '#f44336' : '#f2f2f2',
             },
             '&:hover .MuiOutlinedInput-notchedOutline': {
-              borderColor: '#ccc',
+              borderColor: error ? '#f44336' : '#ccc',
             },
             '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
-              borderColor: '#4dabf5',
+              borderColor: error ? '#f44336' : '#4dabf5',
             },
           }}
         />

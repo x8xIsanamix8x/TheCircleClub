@@ -1,13 +1,21 @@
-import { Box, Button, Typography } from '@mui/material';
+import { Box, Button, Typography, FormHelperText } from '@mui/material';
 import { useRef } from 'react';
 
 interface Props {
   name: string;
   file: File | null;
   onChange: (file: File | null) => void;
+  error?: boolean;
+  helperText?: string;
 }
 
-const CustomImageUploadField = ({ name, file, onChange }: Props) => {
+const CustomImageUploadField = ({
+  name,
+  file,
+  onChange,
+  error = false,
+  helperText = '',
+}: Props) => {
   const inputRef = useRef<HTMLInputElement>(null);
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -42,15 +50,22 @@ const CustomImageUploadField = ({ name, file, onChange }: Props) => {
         sx={{
           borderRadius: '12px',
           textTransform: 'none',
-          borderColor: '#f2f2f2',
+          borderColor: error ? '#f44336' : '#f2f2f2',
           backgroundColor: '#FFF',
+          color: '#2F342E',
           '&:hover': {
-            borderColor: '#ccc',
+            borderColor: error ? '#f44336' : '#ccc',
           },
         }}
       >
         {file ? file.name : `Selecciona una imagen`}
       </Button>
+
+      {helperText && (
+        <FormHelperText error={error} sx={{ mt: '0.4vh', ml: '0.5vh' }}>
+          {helperText}
+        </FormHelperText>
+      )}
 
       {file && (
         <Box mt={1}>

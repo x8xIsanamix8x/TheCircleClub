@@ -11,9 +11,11 @@ interface Props {
   name: string;
   value: string;
   onChange: (value: string) => void;
+  error?: boolean;
+  helperText?: string;
 }
 
-const CustomHideTextField = ({ name, value, onChange }: Props) => {
+const CustomHideTextField = ({ name, value, onChange, error = false, helperText = '' }: Props) => {
   const [showPassword, setShowPassword] = useState(false);
 
   const handleToggleVisibility = () => {
@@ -40,6 +42,8 @@ const CustomHideTextField = ({ name, value, onChange }: Props) => {
         variant="outlined"
         fullWidth
         placeholder={`Escribe tu ${name}`}
+        error={error}
+        helperText={helperText}
         InputProps={{
           endAdornment: (
             <InputAdornment position="end">
@@ -56,14 +60,14 @@ const CustomHideTextField = ({ name, value, onChange }: Props) => {
         }}
         sx={{
           '& .MuiOutlinedInput-notchedOutline': {
-            borderColor: '#f2f2f2',
+            borderColor: error ? '#f44336' : '#f2f2f2',
             borderRadius: '12px',
           },
           '&:hover .MuiOutlinedInput-notchedOutline': {
-            borderColor: '#ccc',
+            borderColor: error ? '#f44336' : '#ccc',
           },
           '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
-            borderColor: '#4dabf5',
+            borderColor: error ? '#f44336' : '#4dabf5',
           },
         }}
       />
