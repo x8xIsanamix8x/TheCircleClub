@@ -48,7 +48,7 @@ const ContactForm = () => {
   setSubmitting(true);
 
     try {
-      const response = await fetch("https://getform.io/f/9fb9a53b-1e5b-4f6c-9509-e4d8791da558", {
+      const response = await fetch("https://getform.io/f/aejrqgmb", {
         method: "POST",
         headers: {
           "Accept": "application/json",
