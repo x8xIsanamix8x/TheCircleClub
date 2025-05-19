@@ -4,6 +4,7 @@ import CustomTextArea from '../elements/customTextArea';
 import CustomCheckboxField from '../elements/CustomCheckboxField';
 import { useState } from 'react';
 import CustomPhoneField from '../elements/custonPhoneField';
+import Swal from "sweetalert2";
 
 const ContactForm = () => {
   const [userRole, setUserRole] = useState<'creador' | 'negocio' | ''>('');
@@ -47,38 +48,53 @@ const ContactForm = () => {
 
   setSubmitting(true);
 
-    try {
-      const response = await fetch("https://getform.io/f/aejrqgmb", {
-        method: "POST",
-        headers: {
-          "Accept": "application/json",
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          nombre: formData.nombre,
-          apellido: formData.apellido,
-          email: formData.email,
-          telefono: `${formData.codigoArea}${formData.telefono}`,
-          instagram: formData.instagram,
-          tiktok: formData.tiktok,
-          mensaje: formData.mensaje,
-          rol: userRole,
-        }),
-      });
+  try {
+    const response = await fetch("https://getform.io/f/aejrqgmb", {
+      method: "POST",
+      headers: {
+        "Accept": "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        nombre: formData.nombre,
+        apellido: formData.apellido,
+        email: formData.email,
+        telefono: `${formData.codigoArea}${formData.telefono}`,
+        instagram: formData.instagram,
+        tiktok: formData.tiktok,
+        mensaje: formData.mensaje,
+        rol: userRole,
+      }),
+    });
 
-      if (response.ok) {
-        setSuccess(true);
-        alert("✅ Tu mensaje ha sido enviado con éxito");
-      } else {
-        alert("❌ Error al enviar. Revisa tu configuración de Getform.");
-      }
-    } catch (error) {
-      console.error("❌ Error:", error);
-      alert("❌ Hubo un problema al enviar tu mensaje");
-    } finally {
-      setSubmitting(false);
+    if (response.ok) {
+      setSuccess(true);
+      Swal.fire({ title: "Solicitud Enviada", icon: "success" });
+
+      // 🧹 Limpiar formulario
+      setFormData({
+        telefono: '',
+        codigoArea: '',
+        instagram: '',
+        tiktok: '',
+        nombre: '',
+        apellido: '',
+        email: '',
+        mensaje: '',
+      });
+      setUserRole('');
+      setErrors({});
+    } else {
+      Swal.fire({ title: "Ha habido un error enviando la solicitud", icon: "error" });
     }
+  } catch (error) {
+    console.error("❌ Error:", error);
+    Swal.fire({ title: "Ha habido un error enviando la solicitud", icon: "error" });
+  } finally {
+    setSubmitting(false);
+  }
   };
+
 
 
   return (
