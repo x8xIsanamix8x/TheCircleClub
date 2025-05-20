@@ -41,7 +41,7 @@ const Header: React.FC<HeaderProps> = ({ onRegisterClick }) => (
         textAlign: 'center', // Alineación centrada
         color: '#2F342E', // Color del texto
         mt: '1vh', // Margen superior
-        mx: '18rem', // Margen horizontal
+        mx: { xs: '7rem', md: '18rem'}, // Margen horizontal
       }}
       paragraph>
         Conectamos las mejores experiencias con los influencers y creadores de contenido más influyentes del panorama nacional e internacional.

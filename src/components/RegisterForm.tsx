@@ -10,6 +10,7 @@ import getApiService from '../helpers/getApiServices';
 import { format } from 'date-fns';
 import CustomNumberField from '../elements/CustomNumberField';
 import CustomImageUploadField from '../elements/CustomImageUploadField';
+import CountrySelectField from '../elements/CountrySelectField';
 
 const RegisterForm = () => {
   const { registerService } = getApiService();
@@ -128,14 +129,15 @@ const RegisterForm = () => {
               </Grid>
 
               <Grid size={12} mb="2.22vh">
-                <CustomSelectField
-                  name="Ubicación"
+                <CountrySelectField
+                  name="País"
                   value={formData.ubicacion}
                   onChange={(val) => handleChange('ubicacion', val)}
-                  options={estadosVenezuela}
                   error={!!errors.ubicacion}
                   helperText={errors.ubicacion}
                 />
+
+                
               </Grid>
 
               <Grid size={12} mb="2.22vh">

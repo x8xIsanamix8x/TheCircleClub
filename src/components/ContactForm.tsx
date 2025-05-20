@@ -69,7 +69,16 @@ const ContactForm = () => {
 
     if (response.ok) {
       setSuccess(true);
-      Swal.fire({ title: "Solicitud Enviada", icon: "success" });
+
+      const mensaje = userRole === 'creador'
+        ? 'Gracias por contactarnos, pronto nos comunicaremos contigo para colaborar juntos.'
+        : 'Gracias por tu interés, un asesor se pondrá en contacto con tu negocio muy pronto.';
+
+      Swal.fire({
+        title: 'Solicitud Enviada',
+        text: mensaje,
+        icon: 'success',
+      });
 
       // 🧹 Limpiar formulario
       setFormData({
@@ -84,7 +93,7 @@ const ContactForm = () => {
       });
       setUserRole('');
       setErrors({});
-    } else {
+  } else {
       Swal.fire({ title: "Ha habido un error enviando la solicitud", icon: "error" });
     }
   } catch (error) {

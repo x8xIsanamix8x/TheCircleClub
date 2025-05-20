@@ -14,7 +14,7 @@ import Image10 from "../assets/img/10.jpeg";
 const ImageSection = () => {
 
   const allImages = [
-    Image1, Image2, Image3, Image4, Image5,
+    Image3, Image4, Image5,
     Image6, Image7, Image8, Image9, Image10
   ];
 
@@ -35,7 +35,7 @@ const ImageSection = () => {
         {/* Columna 1 */}
         <Grid size={2}>
           <Grid container justifyContent="right">
-            <Box component="img" src={randomImages[0]} alt="1" sx={{ width: '100%', borderRadius: 4, mb: 2, maxWidth: '177px', maxHeight: '250px', mt: 'clamp(0px, 25.3vh, 230px)', }} />
+            <Box component="img" src={Image1} alt="1" sx={{ width: '100%', borderRadius: 4, mb: 2, maxWidth: '177px', maxHeight: '250px', mt: 'clamp(0px, 25.3vh, 230px)', }} />
           </Grid>
         </Grid>
 
@@ -59,7 +59,7 @@ const ImageSection = () => {
         {/* Columna 5 */}
         <Grid size={2}>
           <Grid container justifyContent="left">
-            <Box component="img" src={randomImages[6]} alt="6" sx={{ width: '100%', borderRadius: 4, mb: 2, maxWidth: '177px', maxHeight: '250px', mt: 'clamp(0px, 14vh, 126px)', }} />
+            <Box component="img" src={Image2} alt="6" sx={{ width: '100%', borderRadius: 4, mb: 2, maxWidth: '177px', maxHeight: '250px', mt: 'clamp(0px, 14vh, 126px)', }} />
           </Grid>
           
         </Grid>
