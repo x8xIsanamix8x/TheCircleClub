@@ -14,6 +14,7 @@ import useCountryCityMap from '../helpers/useCountryCityMap';
 
 const RegisterForm = () => {
   const { registerService } = getApiService();
+  const cityMap = useCountryCityMap();
 
   const initialFormState = {
     telefono: '',
@@ -25,16 +26,15 @@ const RegisterForm = () => {
     nombre: '',
     apellido: '',
     email: '',
-    ubicacion: '',
-    followers: '',
+    country: '',
     city: '',
+    followers: '',
     profilePhotoUrl: null as File | null,
     fechaNacimiento: null as Date | null,
   };
 
   const [formData, setFormData] = useState(initialFormState);
   const [errors, setErrors] = useState<{ [key: string]: string }>({});
-  const cityMap = useCountryCityMap();
   const [cities, setCities] = useState<string[]>([]);
 
   const handleChange = (field: string, value: string | Date | File | null) => {
@@ -47,7 +47,7 @@ const RegisterForm = () => {
     if (!formData.nombre.trim()) newErrors.nombre = 'Nombre requerido';
     if (!formData.apellido.trim()) newErrors.apellido = 'Apellido requerido';
     if (!formData.fechaNacimiento) newErrors.fechaNacimiento = 'Fecha requerida';
-    if (!formData.ubicacion.trim()) newErrors.ubicacion = 'Ubicación requerida';
+    if (!formData.country.trim()) newErrors.country = 'País requerido';
     if (!formData.city.trim()) newErrors.city = 'Ciudad requerida';
     if (!formData.email.trim()) newErrors.email = 'Email requerido';
     if (!formData.codigoArea.trim() || !formData.telefono.trim()) newErrors.telefono = 'Teléfono requerido';
@@ -69,10 +69,9 @@ const RegisterForm = () => {
     const dataToSend = {
       name: formData.nombre.trim(),
       lastname: formData.apellido.trim(),
-      birthdate: formData.fechaNacimiento
-        ? format(formData.fechaNacimiento, 'yyyy-MM-dd')
-        : '',
-      city: formData.ubicacion.trim(),
+      birthdate: formData.fechaNacimiento ? format(formData.fechaNacimiento, 'yyyy-MM-dd') : '',
+      country: formData.country.trim(),
+      city: formData.city.trim(),
       email: formData.email.trim(),
       phone: `${formData.codigoArea}${formData.telefono}`.replace(/[^0-9]/g, ''),
       instagram: formData.instagram.replace(/^@/, ''),
@@ -91,11 +90,11 @@ const RegisterForm = () => {
   };
 
   useEffect(() => {
-    if (formData.ubicacion && cityMap[formData.ubicacion]) {
-      setCities(cityMap[formData.ubicacion]);
-      handleChange('city', ''); 
+    if (formData.country && cityMap[formData.country]) {
+      setCities(cityMap[formData.country]);
+      handleChange('city', '');
     }
-  }, [formData.ubicacion, cityMap]);
+  }, [formData.country, cityMap]);
 
   return (
     <Grid container direction="row" justifyContent="center" alignItems="top" mt="22.2vh">
@@ -142,12 +141,11 @@ const RegisterForm = () => {
               <Grid size={12} mb="2.22vh">
                 <CountrySelectField
                   name="País"
-                  value={formData.ubicacion}
-                  onChange={(val) => handleChange('ubicacion', val)}
-                  error={!!errors.ubicacion}
-                  helperText={errors.ubicacion}
+                  value={formData.country}
+                  onChange={(val) => handleChange('country', val)}
+                  error={!!errors.country}
+                  helperText={errors.country}
                 />
-                
               </Grid>
 
               <Grid size={12} mb="2.22vh">

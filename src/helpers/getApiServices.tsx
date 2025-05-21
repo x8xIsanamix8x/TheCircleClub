@@ -6,6 +6,7 @@ interface RegisterPayload {
   name: string;
   lastname: string;
   birthdate: string;
+  country: string;
   city: string;
   email: string;
   phone: string;
@@ -23,6 +24,7 @@ const getApiService = () => {
     formData.append("name", data.name);
     formData.append("lastname", data.lastname);
     formData.append("birthdate", data.birthdate);
+    formData.append("country", data.country);
     formData.append("city", data.city);
     formData.append("email", data.email);
     formData.append("phone", `+${data.phone}`);
@@ -35,7 +37,7 @@ const getApiService = () => {
       formData.append("profilePhotoUrl", data.profilePhotoUrl);
     }
 
-    console.log(data.profilePhotoUrl)
+    console.log(data.profilePhotoUrl);
 
     try {
       // Mostrar detalles antes de enviar
@@ -59,7 +61,7 @@ const getApiService = () => {
 
       const response = await circleApi.put(`influencer/auth/register`, formData);
       console.log("✅ Respuesta del backend:", response.data);
-      Swal.fire({ title: "Solicitud Enviada", icon: "success",});
+      Swal.fire({ title: "Solicitud Enviada", icon: "success" });
 
     } catch (error) {
       console.log("❌ Error durante el envío. Reenviando datos para depuración:");
@@ -88,7 +90,7 @@ const getApiService = () => {
 
       console.error("❌ Error al registrar:", error);
 
-      Swal.fire({ icon: "error", title: "Error", text: "Algo salio mal con el registro", });
+      Swal.fire({ icon: "error", title: "Error", text: "Algo salio mal con el registro" });
     }
   };
 
