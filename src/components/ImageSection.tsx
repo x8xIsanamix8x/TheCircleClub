@@ -2,7 +2,6 @@ import { Box, Grid } from '@mui/material';
 import Image1 from "../assets/img/1.jpeg";
 import Image2 from "../assets/img/2.jpeg";
 import Image3 from "../assets/img/3.jpeg";
-import Image4 from "../assets/img/4.jpeg";
 import Image6 from "../assets/img/6.jpeg";
 import Image7 from "../assets/img/7.jpeg";
 import Image8 from "../assets/img/8.jpeg";
@@ -16,7 +15,7 @@ import Image13 from "../assets/img/13.jpeg";
 const ImageSection = () => {
 
   const allImages = [
-    Image1, Image2, Image3, Image4,
+    Image1, Image2, Image3,
     Image6, Image7, Image8, Image9, Image10, Image11
   ];
 
