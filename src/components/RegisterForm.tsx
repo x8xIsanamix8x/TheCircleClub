@@ -1,16 +1,16 @@
 import { Grid, Button, Typography, Divider } from '@mui/material';
 import CustomTextField from '../elements/customTextField';
-import CustomSelectField from '../elements/customSelectField';
 import CustomHideTextField from '../elements/customHideTextField';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import CustomPhoneField from '../elements/custonPhoneField';
 import CustomDateField from '../elements/customDateField';
-import estadosVenezuela from '../models/venezuelaState';
 import getApiService from '../helpers/getApiServices';
 import { format } from 'date-fns';
 import CustomNumberField from '../elements/CustomNumberField';
 import CustomImageUploadField from '../elements/CustomImageUploadField';
 import CountrySelectField from '../elements/CountrySelectField';
+import CitySelectField from '../elements/CitySelectField';
+import useCountryCityMap from '../helpers/useCountryCityMap';
 
 const RegisterForm = () => {
   const { registerService } = getApiService();
@@ -27,12 +27,15 @@ const RegisterForm = () => {
     email: '',
     ubicacion: '',
     followers: '',
+    city: '',
     profilePhotoUrl: null as File | null,
     fechaNacimiento: null as Date | null,
   };
 
   const [formData, setFormData] = useState(initialFormState);
   const [errors, setErrors] = useState<{ [key: string]: string }>({});
+  const cityMap = useCountryCityMap();
+  const [cities, setCities] = useState<string[]>([]);
 
   const handleChange = (field: string, value: string | Date | File | null) => {
     setFormData(prev => ({ ...prev, [field]: value }));
@@ -45,6 +48,7 @@ const RegisterForm = () => {
     if (!formData.apellido.trim()) newErrors.apellido = 'Apellido requerido';
     if (!formData.fechaNacimiento) newErrors.fechaNacimiento = 'Fecha requerida';
     if (!formData.ubicacion.trim()) newErrors.ubicacion = 'Ubicación requerida';
+    if (!formData.city.trim()) newErrors.city = 'Ciudad requerida';
     if (!formData.email.trim()) newErrors.email = 'Email requerido';
     if (!formData.codigoArea.trim() || !formData.telefono.trim()) newErrors.telefono = 'Teléfono requerido';
     if (!formData.instagram.trim()) newErrors.instagram = 'Instagram requerido';
@@ -85,6 +89,13 @@ const RegisterForm = () => {
       console.warn("❌ Registro fallido, los datos se mantienen.", error);
     }
   };
+
+  useEffect(() => {
+    if (formData.ubicacion && cityMap[formData.ubicacion]) {
+      setCities(cityMap[formData.ubicacion]);
+      handleChange('city', ''); 
+    }
+  }, [formData.ubicacion, cityMap]);
 
   return (
     <Grid container direction="row" justifyContent="center" alignItems="top" mt="22.2vh">
@@ -136,8 +147,18 @@ const RegisterForm = () => {
                   error={!!errors.ubicacion}
                   helperText={errors.ubicacion}
                 />
-
                 
+              </Grid>
+
+              <Grid size={12} mb="2.22vh">
+                <CitySelectField
+                  name="Ciudad"
+                  value={formData.city}
+                  onChange={(val) => handleChange('city', val)}
+                  cities={cities}
+                  error={!!errors.city}
+                  helperText={errors.city}
+                />
               </Grid>
 
               <Grid size={12} mb="2.22vh">
