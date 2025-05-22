@@ -49,7 +49,7 @@ const CountrySelectField = ({ name, value, onChange, error = false, helperText =
             Selecciona un país...
           </MenuItem>
           {countries.map((country) => (
-            <MenuItem key={country} value={country}>
+            <MenuItem key={country} value={country.slice(0, 3).toUpperCase()}>
               {country}
             </MenuItem>
           ))}
