@@ -46,7 +46,20 @@ const RegisterForm = () => {
 
     if (!formData.nombre.trim()) newErrors.nombre = 'Nombre requerido';
     if (!formData.apellido.trim()) newErrors.apellido = 'Apellido requerido';
-    if (!formData.fechaNacimiento) newErrors.fechaNacimiento = 'Fecha requerida';
+    if (formData.fechaNacimiento) {
+      const today = new Date();
+      const birthDate = new Date(formData.fechaNacimiento);
+      const age = today.getFullYear() - birthDate.getFullYear();
+      const hasHadBirthdayThisYear =
+        today.getMonth() > birthDate.getMonth() ||
+        (today.getMonth() === birthDate.getMonth() && today.getDate() >= birthDate.getDate());
+    
+      const realAge = hasHadBirthdayThisYear ? age : age - 1;
+    
+      if (realAge < 18) {
+        newErrors.fechaNacimiento = 'Debes tener al menos 18 años para registrarte';
+      }
+    }    
     if (!formData.country.trim()) newErrors.country = 'País requerido';
     if (!formData.city.trim()) newErrors.city = 'Ciudad requerida';
     if (!formData.email.trim()) newErrors.email = 'Email requerido';
