@@ -1,4 +1,8 @@
 import { useEffect, useMemo, useState } from 'react';
+import countries from 'i18n-iso-countries';
+import enLocale from 'i18n-iso-countries/langs/en.json';
+
+countries.registerLocale(enLocale);
 
 const useCountryCityMap = () => {
   const [countryMap, setCountryMap] = useState<{ [countryName: string]: string[] }>({});
@@ -13,8 +17,10 @@ const useCountryCityMap = () => {
   const codeToCitiesMap = useMemo(() => {
     const map: { [code: string]: string[] } = {};
     for (const [countryName, cities] of Object.entries(countryMap)) {
-      const code = countryName.slice(0, 3).toUpperCase(); // Simple código de 3 letras
-      map[code] = cities;
+      const isoCode = countries.getAlpha2Code(countryName, 'en');
+      if (isoCode) {
+        map[isoCode] = cities;
+      }
     }
     return map;
   }, [countryMap]);

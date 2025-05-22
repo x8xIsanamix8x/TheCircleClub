@@ -91,10 +91,11 @@ const RegisterForm = () => {
 
   useEffect(() => {
     if (formData.country && cityMap[formData.country]) {
-      setCities(cityMap[formData.country]);
+      const uniqueCities = Array.from(new Set(cityMap[formData.country])).sort((a, b) => a.localeCompare(b));
+      setCities(uniqueCities);
       handleChange('city', '');
     }
-  }, [formData.country, cityMap]);
+  }, [formData.country, cityMap]);  
 
   return (
     <Grid container direction="row" justifyContent="center" alignItems="top" mt="22.2vh">

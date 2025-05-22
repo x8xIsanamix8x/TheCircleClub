@@ -23,6 +23,7 @@
     "axios": "^1.9.0",
     "date-fns": "^4.1.0",
     "emailjs-com": "^3.2.0",
+    "i18n-iso-countries": "^7.14.0",
     "install": "^0.13.0",
     "npm": "^11.4.0",
     "react": "^19.0.0",

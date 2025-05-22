@@ -1,19 +1,37 @@
 import { useEffect, useState } from 'react';
+import countries from 'i18n-iso-countries';
+import enLocale from 'i18n-iso-countries/langs/en.json';
 
-const useCountryList = () => {
-  const [countries, setCountries] = useState<string[]>([]);
+countries.registerLocale(enLocale);
+
+interface CountryItem {
+  name: string;
+  code: string;
+}
+
+const useCountryList = (): CountryItem[] => {
+  const [countryList, setCountryList] = useState<CountryItem[]>([]);
 
   useEffect(() => {
     fetch('https://raw.githubusercontent.com/russ666/all-countries-and-cities-json/master/countries.json')
-      .then((response) => response.json())
+      .then((res) => res.json())
       .then((data) => {
-        const countryList = Object.keys(data).sort((a, b) => a.localeCompare(b));
-        setCountries(countryList);
+        const names = Object.keys(data);
+        const result: CountryItem[] = names
+          .map((name) => {
+            const code = countries.getAlpha2Code(name, 'en');
+            if (code) return { name, code };
+            return null;
+          })
+          .filter((item): item is CountryItem => item !== null)
+          .sort((a, b) => a.name.localeCompare(b.name));
+
+        setCountryList(result);
       })
-      .catch((error) => console.error('Error fetching countries:', error));
+      .catch((err) => console.error('Error loading countries:', err));
   }, []);
 
-  return countries;
+  return countryList;
 };
 
 export default useCountryList;
