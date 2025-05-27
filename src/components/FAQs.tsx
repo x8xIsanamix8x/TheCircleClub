@@ -20,12 +20,12 @@ const faqData = [
   },
   {
     question: 'Soy una empresa, ¿cómo puedo estar dentro de la app?',
-    answer:'Contáctanos vía email o por WhatsApp. Te enviaremos toda la información necesaria para formar parte del club. ',
+    answer: 'Contáctanos vía email o por WhatsApp. Te enviaremos toda la información necesaria para formar parte del club.',
   },
   {
     question: '¿Tengo un problema con una solicitud dentro de la app, ¿qué hago?',
     answer:
-      ' Nuestro servicio de atención al cliente está disponible por WhatsApp las 24 horas. Escríbenos y te ayudaremos de inmediato.',
+      'Nuestro servicio de atención al cliente está disponible por WhatsApp las 24 horas. Escríbenos y te ayudaremos de inmediato.',
   },
   {
     question: '¿Dónde puedo contactarlos?',
@@ -33,14 +33,13 @@ const faqData = [
       'Puedes escribirnos directamente a través del formulario de contacto en nuestra página web o por nuestras redes sociales.',
   },
   {
-    question: '¿Tiene algún costo estar en The CIRCLE club.?',
+    question: '¿Tiene algún costo estar en The CIRCLE club?',
     answer:
       'No cobramos a los influencers por formar parte del club.',
   },
 ];
 
 const FAQs = () => {
-
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   const handleToggle = (index: number) => {
@@ -49,98 +48,89 @@ const FAQs = () => {
 
   return (
     <Grid container direction="row" justifyContent="center" alignItems="top" mt="22.2vh">
-      <Grid size={12} px={{ xs: 0, md: "100px", lg: "315px" }}>
-        <Typography textAlign="center" component="p" fontSize={40} fontWeight={300} sx={{ color: '#2F342E', fontFamily: 'Inter' }}>FAQs</Typography>
-          <Grid
-            container
-            direction="row"
-            justifyContent="space-between"
-            spacing={2}
-            mt="2.22vh"
-          >
-            {faqData.map((item, index) => (
-              <Grid
-                item
-                xs={12} // Ajusta el tamaño para pantallas pequeñas
-                md={6} // Ajusta el tamaño para pantallas medianas
-                key={index}
-                sx={{
-                  backgroundColor: '#2F342E',
-                  borderRadius: '10px',
-                  cursor: 'pointer',
-                  overflow: 'hidden', // Evita desbordamientos
-                }}
-                py="1.5vh"
-                onClick={() => handleToggle(index)}
-              >
+      <Grid item xs={12} px={{ xs: 2, md: "100px", lg: "315px" }}>
+        <Typography
+          textAlign="center"
+          component="p"
+          fontSize={40}
+          fontWeight={300}
+          sx={{ color: '#2F342E', fontFamily: 'Inter' }}
+        >
+          FAQs
+        </Typography>
+
+        <Grid container spacing={2} mt="2.22vh">
+          {faqData.map((item, index) => (
+            <Grid
+              item
+              xs={12}
+              md={6}
+              key={index}
+              sx={{
+                backgroundColor: '#2F342E',
+                borderRadius: '10px',
+                cursor: 'pointer',
+                overflow: 'hidden',
+              }}
+              py="1.5vh"
+              onClick={() => handleToggle(index)}
+            >
+              <Grid container direction="column" px="14px">
+                {/* Pregunta + Ícono */}
                 <Grid
                   container
-                  direction="row"
-                  justifyContent="space-between"
                   alignItems="center"
-                  px="14px"
+                  justifyContent="space-between"
+                  wrap="nowrap"
+                  sx={{ gap: 1 }}
                 >
-                  {/* Pregunta */}
-                  <Grid item xs={10} sx={{ whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
+                  <Grid item sx={{ flex: 1 }}>
                     <Typography
-                      textAlign="left"
-                      component="p"
                       fontSize={16}
                       fontWeight={400}
                       sx={{
                         color: '#FFF',
                         fontFamily: 'Inter',
-                        whiteSpace: 'nowrap',
-                        overflow: 'hidden',
-                        textOverflow: 'ellipsis',
+                        whiteSpace: 'normal',
+                        wordBreak: 'break-word',
                       }}
                     >
-                      {item?.question}
+                      {item.question}
                     </Typography>
                   </Grid>
 
-                  {/* Icono */}
-                  <Grid
-                    item
-                    xs={2}
-                    sx={{
-                      display: 'flex',
-                      justifyContent: 'flex-end',
-                      alignItems: 'center',
-                      whiteSpace: 'nowrap',
-                    }}
-                  >
+                  <Grid item>
                     <ArrowDropDown
                       sx={{
                         transform: openIndex === index ? 'rotate(180deg)' : 'rotate(0deg)',
                         transition: 'transform 0.3s ease',
-                        verticalAlign: 'middle',
                       }}
                     />
                   </Grid>
+                </Grid>
 
-                  {/* Respuesta */}
-                  <Grid item xs={12}>
-                    <Collapse in={openIndex === index} timeout="auto" unmountOnExit>
-                      <Typography
-                        textAlign="left"
-                        component="p"
-                        fontSize={16}
-                        fontWeight={400}
-                        sx={{ color: '#FFF', fontFamily: 'Inter' }}
-                        mt="1vh"
-                      >
-                        {item.answer}
-                      </Typography>
-                    </Collapse>
-                  </Grid>
+                {/* Respuesta */}
+                <Grid item xs={12}>
+                  <Collapse in={openIndex === index} timeout="auto" unmountOnExit>
+                    <Typography
+                      textAlign="left"
+                      component="p"
+                      fontSize={16}
+                      fontWeight={400}
+                      sx={{ color: '#FFF', fontFamily: 'Inter' }}
+                      mt="1vh"
+                    >
+                      {item.answer}
+                    </Typography>
+                  </Collapse>
                 </Grid>
               </Grid>
-            ))}
-          </Grid>
+            </Grid>
+          ))}
+        </Grid>
       </Grid>
     </Grid>
-  )
+  );
 };
 
 export default FAQs;
