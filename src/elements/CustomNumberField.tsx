@@ -32,7 +32,7 @@ const CustomNumberField = ({ name, value, onChange, error = false, helperText = 
         onChange={handleChange}
         variant="outlined"
         fullWidth
-        placeholder={`Escribe tu ${name}`}
+        placeholder={`Escribe tu ${name.toLowerCase()}`}
         inputProps={{ inputMode: 'numeric', pattern: '[0-9]*' }}
         error={error}
         helperText={helperText}

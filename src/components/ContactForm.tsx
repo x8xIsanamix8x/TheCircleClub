@@ -108,7 +108,7 @@ const ContactForm = () => {
 
   return (
     <Grid container direction="row" justifyContent="center" alignItems="top" mt="22.2vh">
-      <Grid size={12} px={{ xs: 0, md: "420px" }}>
+      <Grid size={12} px={{ xs: 0, md: '200px', lg: "420px" }}>
         <Typography textAlign="center" component="p" fontSize={40} fontWeight={300} sx={{ color: '#2F342E', fontFamily: 'Inter' }}>CONTACTÁNOS</Typography>
         <Typography textAlign="left" component="p" fontSize={14} fontWeight={500} sx={{ color: '#2F342E', fontFamily: 'Inter' }} mt="11.1vh">¿Qué opción te identifica mejor?</Typography>
         <Grid container direction="row" justifyContent="center" spacing={2} mt="4.4vh">

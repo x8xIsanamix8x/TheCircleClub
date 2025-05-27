@@ -22,6 +22,11 @@ const CustomHideTextField = ({ name, value, onChange, error = false, helperText 
     setShowPassword(prev => !prev);
   };
 
+  const getPlaceholderText = (label: string) => {
+    if (label.toLowerCase().includes('confirmar')) return `Repetir clave`;
+    return `Escribe tu ${label.toLowerCase()}`;
+  };
+
   return (
     <>
       <Typography
@@ -41,7 +46,7 @@ const CustomHideTextField = ({ name, value, onChange, error = false, helperText 
         onChange={(e) => onChange(e.target.value)}
         variant="outlined"
         fullWidth
-        placeholder={`Escribe tu ${name}`}
+        placeholder={getPlaceholderText(name)}
         error={error}
         helperText={helperText}
         InputProps={{

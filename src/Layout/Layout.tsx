@@ -27,6 +27,7 @@ const Layout = ({ children, sectionRefs }: LayoutProps) => {
         alignItems: 'center',
         justifyContent: 'center',
         width: '100vw',           // Fuerza el 100% del viewport horizontal
+        maxWidth: '100%',
         minHeight: '100vh',
         overflowX: 'hidden',      // Previene scroll horizontal si algo se desborda
         px: 0,                    // Elimina padding horizontal

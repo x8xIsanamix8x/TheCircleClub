@@ -112,16 +112,13 @@ const RegisterForm = () => {
 
   return (
     <Grid container direction="row" justifyContent="center" alignItems="top" mt="22.2vh">
-      <Grid size={12} px={{ xs: 0, md: "315px" }}>
+      <Grid size={12} px={{ xs: 0, md: "100px", lg: "315px" }}>
         <Divider />
-        <Grid container direction="row" justifyContent="space-between" mt="4.4vh" spacing={2}>
-          <Grid size={{ xs: 12, md: 4 }}>
-            <Typography textAlign="left" component="p" fontSize={40} fontWeight={300} sx={{ color: '#2F342E', fontFamily: 'Inter' }}>Registrarse</Typography>
-          </Grid>
-          <Grid size={{ xs: 12, md: 8 }}>
+        <Grid container direction="row" justifyContent="center" mt="4.4vh" spacing={2}>
+          <Grid size={{ xs: 12, md:  8 }}>
             <Grid container direction="row" spacing={2}>
-              <Grid size={12} mb="2.22vh" sx={{ backgroundColor: '#FFF', borderRadius: '7px' }} py="1.4vh">
-                <Typography textAlign="center" component="p" fontSize={16} fontWeight={500} sx={{ color: '#2F342E', fontFamily: 'Inter' }}>Registrarse</Typography>
+              <Grid size={12} mb="2.22vh" py="1.4vh">
+                <Typography textAlign="left" component="p" fontSize={40} fontWeight={300} sx={{ color: '#2F342E', fontFamily: 'Inter' }}>Registrarse</Typography>
               </Grid>
 
               <Grid size={12} mb="2.22vh">
@@ -202,7 +199,7 @@ const RegisterForm = () => {
               </Grid>
 
               <Grid size={12} mb="2.22vh">
-                <CustomHideTextField name="Crear Contraseña" value={formData.contrasena} onChange={val => handleChange('contrasena', val)} error={!!errors.contrasena} helperText={errors.contrasena} />
+                <CustomHideTextField name="Contraseña" value={formData.contrasena} onChange={val => handleChange('contrasena', val)} error={!!errors.contrasena} helperText={errors.contrasena} />
               </Grid>
 
               <Grid size={12} mb="2.22vh">

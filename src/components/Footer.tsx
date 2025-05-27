@@ -12,7 +12,7 @@ interface FooterProps {
 
 const Footer = ({ onScrollTo }: FooterProps) => (
     <Grid container direction="row" justifyContent="center" alignItems="top" mt="22.2vh">
-        <Grid size={12} px={{ xs: 0, md: "315px" }}>
+        <Grid size={12} px={{ xs: 0, md: "100px", lg: "315px" }}>
             <Grid container direction="row" justifyContent="space-between">
                 <Grid size={6} pr="120px">
                     <Box 

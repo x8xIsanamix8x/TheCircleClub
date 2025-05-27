@@ -49,7 +49,7 @@ const FAQs = () => {
 
   return (
     <Grid container direction="row" justifyContent="center" alignItems="top" mt="22.2vh">
-      <Grid size={12} px={{ xs: 0, md: "315px" }}>
+      <Grid size={12} px={{ xs: 0, md: "100px", lg: "315px" }}>
         <Typography textAlign="center" component="p" fontSize={40} fontWeight={300} sx={{ color: '#2F342E', fontFamily: 'Inter' }}>FAQs</Typography>
           <Grid
             container
@@ -81,13 +81,19 @@ const FAQs = () => {
                   px="14px"
                 >
                   {/* Pregunta */}
-                  <Grid item xs={10}>
+                  <Grid item xs={10} sx={{ whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
                     <Typography
                       textAlign="left"
                       component="p"
                       fontSize={16}
                       fontWeight={400}
-                      sx={{ color: '#FFF', fontFamily: 'Inter' }}
+                      sx={{
+                        color: '#FFF',
+                        fontFamily: 'Inter',
+                        whiteSpace: 'nowrap',
+                        overflow: 'hidden',
+                        textOverflow: 'ellipsis',
+                      }}
                     >
                       {item?.question}
                     </Typography>
@@ -97,7 +103,12 @@ const FAQs = () => {
                   <Grid
                     item
                     xs={2}
-                    sx={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'center' }}
+                    sx={{
+                      display: 'flex',
+                      justifyContent: 'flex-end',
+                      alignItems: 'center',
+                      whiteSpace: 'nowrap',
+                    }}
                   >
                     <ArrowDropDown
                       sx={{

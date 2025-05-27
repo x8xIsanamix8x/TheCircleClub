@@ -34,7 +34,7 @@ const CustomTextArea = ({
       fullWidth
       multiline
       rows={4}
-      placeholder={`Escribe tu ${name}`}
+      placeholder={`Escribe tu ${name.toLowerCase()}`}
       error={error}
       helperText={helperText}
       InputProps={{

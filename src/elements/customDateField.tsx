@@ -42,7 +42,7 @@ const CustomDateField = ({
               fullWidth: true,
               error,
               helperText,
-              placeholder: `Selecciona ${name}`,
+              placeholder: `Selecciona ${name.toLowerCase()}`,
               InputProps: {
                 sx: {
                   backgroundColor: '#FFF', // ✅ solo input

@@ -10,16 +10,16 @@ const AboutUs = () => {
 
    return (
       <Grid container direction="row" justifyContent="center" alignItems="top" mt="22.2vh">
-         <Grid size={12} px={{ xs: 0, md: "315px" }}>
-            <Typography textAlign="center" component="p" fontSize={16} fontWeight={400} sx={{ color: '#2F342E', fontFamily: 'Inter' }}>¿Quiénes somos?</Typography>
+         <Grid size={12} px={{ xs: 0, md: "100px", lg: "315px" }}>
+            <Typography textAlign="center" component="p" fontSize={16} fontWeight={400} sx={{ color: '#2F342E', fontFamily: 'Inter' }}>The Club</Typography>
          </Grid>
-         <Grid size={12} px={{ xs: 0, md: "315px" }}>
-            <Typography textAlign="center" component="p" fontSize={40} fontWeight={300} sx={{ color: '#2F342E', fontFamily: 'Inter' }}>Conectamos a las mejores marcas con <br />los creadores mas influyentes</Typography>
+         <Grid size={12} px={{ xs: 0, md: "100px", lg: "315px" }}>
+            <Typography textAlign="center" component="p" fontSize={40} fontWeight={300} sx={{ color: '#2F342E', fontFamily: 'Inter' }}>AQUÍ LAS MARCAS SE TRANSFORMAN EN TENDENCIA</Typography>
          </Grid>
-         <Grid size={12} px={{ xs: 0, md: "315px" }}>
-            <Typography textAlign="center" component="p" fontSize={16} fontWeight={400} sx={{ color: '#2F342E', fontFamily: 'Inter' }}>Somos la primera y única plataforma que conecta las mejores experiencias con los mejores influencers y creadores de contenidos del panorama nacional e internacional.</Typography>
+         <Grid size={12} px={{ xs: 0, md: "100px", lg: "315px" }}>
+            <Typography textAlign="center" component="p" fontSize={16} fontWeight={400} sx={{ color: '#2F342E', fontFamily: 'Inter' }}>Creadores selectos con impacto real.</Typography>
          </Grid>
-         <Grid size={12} px={{ xs: 0, md: "315px" }}>
+         <Grid size={12} px={{ xs: 0, md: "100px", lg: "315px" }}>
             <Grid container direction="row" justifyContent="space-between" alignItems="top" mt="8.8vh">
                <Grid size={4}>
                   <Typography textAlign="left" component="p" fontSize={16} fontWeight={500} sx={{ color: '#2F342E', fontFamily: 'Inter', cursor: 'pointer' }} onClick={() => setActiveSection(1)}>¿Quiénes somos?</Typography>

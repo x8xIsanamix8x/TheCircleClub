@@ -26,7 +26,7 @@ const CustomTextField = ({ name, value, onChange, error = false, helperText = ''
       onChange={(e) => onChange(e.target.value)}
       variant="outlined"
       fullWidth
-      placeholder={`Escribe tu ${name}`}
+      placeholder={`Escribe tu ${name.toLowerCase()}`}
       error={error}
       helperText={helperText}
       InputProps={{
