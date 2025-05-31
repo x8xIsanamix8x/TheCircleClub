@@ -49,22 +49,19 @@ const ContactForm = () => {
   setSubmitting(true);
 
   try {
+    const formDataToSend = new FormData();
+    formDataToSend.append('nombre', formData.nombre);
+    formDataToSend.append('apellido', formData.apellido);
+    formDataToSend.append('email', formData.email);
+    formDataToSend.append('telefono', `${formData.codigoArea}${formData.telefono}`);
+    formDataToSend.append('instagram', formData.instagram);
+    formDataToSend.append('tiktok', formData.tiktok);
+    formDataToSend.append('mensaje', formData.mensaje);
+    formDataToSend.append('rol', userRole);
+
     const response = await fetch("https://getform.io/f/aronnlob", {
       method: "POST",
-      headers: {
-        "Accept": "application/json",
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        nombre: formData.nombre,
-        apellido: formData.apellido,
-        email: formData.email,
-        telefono: `${formData.codigoArea}${formData.telefono}`,
-        instagram: formData.instagram,
-        tiktok: formData.tiktok,
-        mensaje: formData.mensaje,
-        rol: userRole,
-      }),
+      body: formDataToSend, // No pongas headers
     });
 
     if (response.ok) {
