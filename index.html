@@ -8,9 +8,10 @@
             content="width=width=device-width, initial-scale=1.0"
         />
         <title>The Circle Club</title>
+        <!-- Google tag (gtag.js) -->
         <script
             async
-            src="https://www.googletagmanager.com/gtag/js?id=G-9BV37MCEY3"
+            src="https://www.googletagmanager.com/gtag/js?id=G-MJG60FVDH9"
         ></script>
         <script>
             window.dataLayer = window.dataLayer || [];
@@ -19,8 +20,37 @@
             }
             gtag("js", new Date());
 
-            gtag("config", "G-9BV37MCEY3");
+            gtag("config", "G-MJG60FVDH9");
         </script>
+        <!-- Meta Pixel Code -->
+        <script>
+            !(function (f, b, e, v, n, t, s) {
+                if (f.fbq) return;
+                n = f.fbq = function () {
+                    n.callMethod
+                        ? n.callMethod.apply(n, arguments)
+                        : n.queue.push(arguments);
+                };
+                if (!f._fbq) f._fbq = n;
+                n.push = n;
+                n.loaded = !0;
+                n.version = "2.0";
+                n.queue = [];
+                t = b.createElement(e);
+                t.async = !0;
+                t.src = v;
+                s = b.getElementsByTagName(e)[0];
+                s.parentNode.insertBefore(t, s);
+            })(
+                window,
+                document,
+                "script",
+                "https://connect.facebook.net/en_US/fbevents.js",
+            );
+            fbq("init", "1380074383259795");
+            fbq("track", "PageView");
+        </script>
+        <!-- End Meta Pixel Code -->
     </head>
     <body>
         <div id="root"></div>
