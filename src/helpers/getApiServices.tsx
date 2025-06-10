@@ -87,20 +87,17 @@ const getApiService = () => {
       }
 
       if (axios.isAxiosError(error)) {
-        console.error("🌐 URL usada:", error.config?.baseURL + error.config?.url);
-        console.error("🧾 Respuesta del servidor:", error.response?.data?.detail);
-
         const detail = error.response?.data?.detail;
 
-        if (typeof detail === 'string') {
+        if (detail === 'The credentials provided are already in use') {
+          errorMessage = 'Las credenciales proporcionadas ya están en uso.';
+        } else if (typeof detail === 'string') {
           errorMessage = detail;
         } else if (typeof error.response?.data === 'string') {
           errorMessage = error.response.data;
         } else if (error.message) {
           errorMessage = error.message;
         }
-      } else if (error instanceof Error) {
-        errorMessage = error.message;
       }
 
       Swal.fire({
