@@ -18,6 +18,9 @@ interface RegisterPayload {
 }
 
 const getApiService = () => {
+
+  let errorMessage = 'Algo salió mal con el registro';
+
   const registerService = async (data: RegisterPayload) => {
     const formData = new FormData();
 
@@ -26,7 +29,7 @@ const getApiService = () => {
     formData.append("birthdate", data.birthdate);
     formData.append("country", data.country);
     formData.append("city", data.city);
-    formData.append("email", data.email);
+    formData.append("email", data.email.toLowerCase());
     formData.append("phone", `+${data.phone}`);
     formData.append("instagram", data.instagram);
     formData.append("tiktok", data.tiktok);
@@ -85,12 +88,26 @@ const getApiService = () => {
 
       if (axios.isAxiosError(error)) {
         console.error("🌐 URL usada:", error.config?.baseURL + error.config?.url);
-        console.error("🧾 Respuesta del servidor:", error.response?.data);
+        console.error("🧾 Respuesta del servidor:", error.response?.data?.detail);
+
+        const detail = error.response?.data?.detail;
+
+        if (typeof detail === 'string') {
+          errorMessage = detail;
+        } else if (typeof error.response?.data === 'string') {
+          errorMessage = error.response.data;
+        } else if (error.message) {
+          errorMessage = error.message;
+        }
+      } else if (error instanceof Error) {
+        errorMessage = error.message;
       }
 
-      console.error("❌ Error al registrar:", error);
-
-      Swal.fire({ icon: "error", title: "Error", text: "Algo salio mal con el registro" });
+      Swal.fire({
+        icon: "error",
+        title: "Error",
+        text: errorMessage,
+      });
     }
   };
 

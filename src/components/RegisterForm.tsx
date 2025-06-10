@@ -1,7 +1,7 @@
-import { Grid, Button, Typography, Divider } from '@mui/material';
+import { Grid, Button, Typography, Divider, CircularProgress } from '@mui/material';
 import CustomTextField from '../elements/customTextField';
 import CustomHideTextField from '../elements/customHideTextField';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import CustomPhoneField from '../elements/custonPhoneField';
 import CustomDateField from '../elements/customDateField';
 import getApiService from '../helpers/getApiServices';
@@ -36,6 +36,9 @@ const RegisterForm = () => {
   const [formData, setFormData] = useState(initialFormState);
   const [errors, setErrors] = useState<{ [key: string]: string }>({});
   const [cities, setCities] = useState<string[]>([]);
+  const [loading, setLoading] = useState<boolean>(false);
+  const fileInputRef = useRef<HTMLInputElement | null>(null);
+
 
   const handleChange = (field: string, value: string | Date | File | null) => {
     setFormData(prev => ({ ...prev, [field]: value }));
@@ -94,11 +97,17 @@ const RegisterForm = () => {
       profilePhotoUrl: formData.profilePhotoUrl,
     };
 
+    setLoading(true)
     try {
       await registerService(dataToSend);
       setFormData(initialFormState);
+      if (fileInputRef.current) {
+        fileInputRef.current.value = '';
+      }
     } catch (error) {
       console.warn("❌ Registro fallido, los datos se mantienen.", error);
+    } finally {
+      setLoading(false)
     }
   };
 
@@ -128,6 +137,7 @@ const RegisterForm = () => {
                   onChange={(file) => handleChange('profilePhotoUrl', file)}
                   error={!!errors.profilePhotoUrl}
                   helperText={errors.profilePhotoUrl}
+                  inputRef={fileInputRef}
                 />
               </Grid>
 
@@ -207,7 +217,18 @@ const RegisterForm = () => {
               </Grid>
 
               <Grid size={12} mb="2.22vh">
-                <Button variant='contained' fullWidth sx={{ backgroundColor: '#2F342E', color: '#FFFFFF', fontSize: '16px' }} onClick={handleSubmit}>Aceptar</Button>
+                <Button
+                  variant="contained"
+                  fullWidth
+                  onClick={handleSubmit}
+                  disabled={loading}                           
+                  endIcon={loading ? (                      
+                    <CircularProgress size={20} color="inherit" />
+                  ) : null}
+                  sx={{ backgroundColor: '#2F342E', color: '#FFFFFF', fontSize: 16 }}
+                >
+                  {loading ? 'Enviando…' : 'Aceptar'}
+                </Button>
               </Grid>
             </Grid>
           </Grid>

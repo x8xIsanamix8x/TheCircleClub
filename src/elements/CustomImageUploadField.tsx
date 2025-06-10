@@ -1,5 +1,5 @@
 import { Box, Button, Typography, FormHelperText } from '@mui/material';
-import { useRef } from 'react';
+import { useRef, RefObject } from 'react';
 
 interface Props {
   name: string;
@@ -7,6 +7,7 @@ interface Props {
   onChange: (file: File | null) => void;
   error?: boolean;
   helperText?: string;
+  inputRef?: RefObject<HTMLInputElement>; 
 }
 
 const CustomImageUploadField = ({
@@ -15,8 +16,11 @@ const CustomImageUploadField = ({
   onChange,
   error = false,
   helperText = '',
+  inputRef, 
 }: Props) => {
-  const inputRef = useRef<HTMLInputElement>(null);
+  
+  const internalRef = useRef<HTMLInputElement>(null);
+  const fileInputRef = inputRef ?? internalRef;
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const selectedFile = e.target.files?.[0] ?? null;
@@ -39,13 +43,13 @@ const CustomImageUploadField = ({
         type="file"
         accept="image/*"
         hidden
-        ref={inputRef}
+        ref={fileInputRef} 
         onChange={handleFileChange}
       />
 
       <Button
         variant="outlined"
-        onClick={() => inputRef.current?.click()}
+        onClick={() => fileInputRef.current?.click()}
         fullWidth
         sx={{
           borderRadius: '12px',
