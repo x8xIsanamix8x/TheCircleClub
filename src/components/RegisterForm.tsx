@@ -10,11 +10,12 @@ import CustomNumberField from '../elements/CustomNumberField';
 import CustomImageUploadField from '../elements/CustomImageUploadField';
 import CountrySelectField from '../elements/CountrySelectField';
 import CitySelectField from '../elements/CitySelectField';
-import useCountryCityMap from '../helpers/useCountryCityMap';
+import useCountryStateMap from '../helpers/useCountryStateMap';
+
 
 const RegisterForm = () => {
   const { registerService } = getApiService();
-  const cityMap = useCountryCityMap();
+  const stateMap = useCountryStateMap();
 
   const initialFormState = {
     telefono: '',
@@ -112,12 +113,14 @@ const RegisterForm = () => {
   };
 
   useEffect(() => {
-    if (formData.country && cityMap[formData.country]) {
-      const uniqueCities = Array.from(new Set(cityMap[formData.country])).sort((a, b) => a.localeCompare(b));
-      setCities(uniqueCities);
-      handleChange('city', '');
-    }
-  }, [formData.country, cityMap]);  
+  if (formData.country && stateMap[formData.country]) {
+    const uniqueStates = Array.from(new Set(stateMap[formData.country])).sort((a, b) =>
+      a.localeCompare(b)
+    );
+    setCities(uniqueStates);
+    handleChange('state', '');
+  }
+}, [formData.country, stateMap]); 
 
   return (
     <Grid container direction="row" justifyContent="center" alignItems="top" mt="22.2vh">
