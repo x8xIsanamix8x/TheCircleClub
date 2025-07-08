@@ -8,6 +8,8 @@ import FAQs from './components/FAQs';
 import ContactForm from './components/ContactForm';
 import ChildSafetyPolicy from './components/PolicyContainer'; // importa tu componente de política
 import { useRef } from 'react';
+import LayoutDelete from './Layout/LayoutDelete';
+import DeleteForm from './components/DeleteForm';
 
 const App = () => {
   const aboutRef = useRef<HTMLElement>(null);
@@ -53,6 +55,13 @@ const App = () => {
         />
         {/* Ruta independiente para la política */}
         <Route path="/politica-seguridad-infantil" element={<ChildSafetyPolicy />} />
+        <Route path="/delete-account" element={
+          <LayoutDelete>
+              <section>
+                <DeleteForm />
+              </section>
+            </LayoutDelete>
+        } />
       </Routes>
     </BrowserRouter>
   );
