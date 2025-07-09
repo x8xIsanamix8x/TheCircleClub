@@ -17,6 +17,11 @@ interface RegisterPayload {
   profilePhotoUrl: File | null;
 }
 
+interface DeletePayload {
+  email: string;
+  password: string
+}
+
 const getApiService = () => {
 
   let errorMessage = 'Algo salió mal con el registro';
@@ -40,51 +45,12 @@ const getApiService = () => {
       formData.append("profilePhotoUrl", data.profilePhotoUrl);
     }
 
-    console.log(data.profilePhotoUrl);
-
     try {
-      // Mostrar detalles antes de enviar
-      console.log("📡 Método:", "POST");
-      console.log("📤 Datos enviados:");
-      for (const pair of formData.entries()) {
-        console.log(`${pair[0]}:`, pair[1]);
-      }
 
-      if (data.profilePhotoUrl) {
-        console.log("🖼 Archivo enviado:", {
-          name: data.profilePhotoUrl.name,
-          type: data.profilePhotoUrl.type,
-          size: `${(data.profilePhotoUrl.size / 1024).toFixed(2)} KB`,
-        });
-
-        const previewUrl = URL.createObjectURL(data.profilePhotoUrl);
-        console.log("🔗 Vista previa del archivo:", previewUrl);
-        console.log("%c ", `font-size:1px; padding: 60px; background: url(${previewUrl}) no-repeat center; background-size: contain;`);
-      }
-
-      const response = await circleApi.put(`influencer/auth/register`, formData);
-      console.log("✅ Respuesta del backend:", response.data);
+      await circleApi.put(`influencer/auth/register`, formData);
       Swal.fire({ title: "Solicitud Enviada", icon: "success" });
 
     } catch (error) {
-      console.log("❌ Error durante el envío. Reenviando datos para depuración:");
-      console.log("📡 Método:", "PUT");
-
-      for (const pair of formData.entries()) {
-        console.log(`${pair[0]}:`, pair[1]);
-      }
-
-      if (data.profilePhotoUrl) {
-        console.log("🖼 Archivo enviado:", {
-          name: data.profilePhotoUrl.name,
-          type: data.profilePhotoUrl.type,
-          size: `${(data.profilePhotoUrl.size / 1024).toFixed(2)} KB`,
-        });
-
-        const previewUrl = URL.createObjectURL(data.profilePhotoUrl);
-        console.log("🔗 Vista previa del archivo:", previewUrl);
-        console.log("%c ", `font-size:1px; padding: 60px; background: url(${previewUrl}) no-repeat center; background-size: contain;`);
-      }
 
       if (axios.isAxiosError(error)) {
         const detail = error.response?.data?.detail;
@@ -108,8 +74,36 @@ const getApiService = () => {
     }
   };
 
+  const deleteAccount = async (data: DeletePayload) => {
+    try {
+      await circleApi.put(`auth/delete`, data)
+      Swal.fire({ title: "Tu cuenta ha sido eliminada con éxito.",  html: `
+        Gracias por haber sido parte de The Circle Club.<br /><br />
+        Si en algún momento decides regresar, estaremos encantados de darte la bienvenida nuevamente.<br /><br />
+        Puedes escribirnos a info@thecircleclubapp.com para reactivar tu cuenta.
+      `, icon: "success" });
+    } catch (error) {
+
+      if (axios.isAxiosError(error)) {
+        const detail = error.response?.data?.detail;
+
+        if (detail === 'The credentials provided are already in use') {
+          errorMessage = 'Las credenciales proporcionadas ya están en uso.';
+        } else if (typeof detail === 'string') {
+          errorMessage = detail;
+        } else if (typeof error.response?.data === 'string') {
+          errorMessage = error.response.data;
+        } else if (error.message) {
+          errorMessage = error.message;
+        }
+      }
+
+    }
+  }
+
   return {
     registerService,
+    deleteAccount
   };
 };
 

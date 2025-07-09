@@ -6,7 +6,7 @@ import getApiService from '../helpers/getApiServices';
 import Swal from 'sweetalert2';
 
 const DeleteForm = () => {
-  const { registerService } = getApiService();
+  const { deleteAccount } = getApiService();
 
   const [formData, setFormData] = useState({
     email: '',
@@ -58,12 +58,10 @@ const DeleteForm = () => {
 
     setLoading(true);
     try {
-      await registerService({ email: formData.email, password: formData.contrasena });
+      await deleteAccount({ email: formData.email, password: formData.contrasena });
       setFormData({ email: '', contrasena: '' });
-      Swal.fire('¡Listo!', 'Tu solicitud fue enviada.', 'success');
     } catch (error) {
       console.warn("❌ Registro fallido", error);
-      Swal.fire('Error', 'No se pudo completar la solicitud.', 'error');
     } finally {
       setLoading(false);
     }
@@ -97,7 +95,8 @@ const DeleteForm = () => {
             letterSpacing: '1%', // Espaciado entre letras
             textAlign: 'center', // Alineación centrada
             color: '#2F342E', // Color del texto
-            mt: '3vh', // Margen superior
+            mt: '2rem', // Margen superior
+            mb: '2rem',
             mx: { xs: '2rem', md: '4rem'}, // Margen horizontal
         }}
         paragraph>
