@@ -76,7 +76,7 @@ const getApiService = () => {
 
   const deleteAccount = async (data: DeletePayload) => {
     try {
-      await circleApi.put(`auth/delete`, data)
+      await circleApi.delete(`auth/delete`, { data: data })
       Swal.fire({ title: "Tu cuenta ha sido eliminada con éxito.",  html: `
         Gracias por haber sido parte de The Circle Club.<br /><br />
         Si en algún momento decides regresar, estaremos encantados de darte la bienvenida nuevamente.<br /><br />
